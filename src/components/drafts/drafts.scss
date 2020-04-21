@@ -8,6 +8,7 @@
 }
 
 .draft {
+  position: relative;
   @include flex(row, center, center);
   width: 100%;
   padding: 15px 0;
@@ -28,8 +29,24 @@
   }
 
   &__delete {
+    position: absolute;
+    right: 10px;
+    @include size(20px, 20px);
+    color: white;
+    border: 0;
+    background-color: transparent;
+    background: url('/trash.svg') no-repeat center;
+    background-size: contain;
+    font-size: 1rem;
     opacity: 0;
+    transform: scale(1);
+    transform-origin: center;
+    cursor: pointer;
     transition: all .2s ease-in-out;
+
+    &:hover {
+      background-color: #e93359;
+    }
   }
 }
 

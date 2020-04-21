@@ -85,7 +85,7 @@ const Drafts = () => {
             {drafts.map((draft, i) => {
               return <div key={draft.slice(0, 10)} className='draft'>
                 <p>{draft}</p>
-                <button className='draft__delete' onClick={() => handleDeleteDraft(i)}>DELETE</button>
+                <button className='draft__delete' onClick={() => handleDeleteDraft(i)} />
               </div>
             })}
           </div>
