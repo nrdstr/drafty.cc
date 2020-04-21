@@ -1,0 +1,21 @@
+
+@mixin flex($dir, $just, $align) {
+  display: flex;
+  flex-direction: $dir;
+  justify-content: $just;
+  align-items: $align;
+}
+
+@mixin size($w, $h) {
+  width: $w;
+  height: $h;
+}
+
+@mixin linear-grad($colorBegin, $colorEnd, $angle) {
+  background:
+    linear-gradient(
+      $angle,
+      $colorBegin 0%,
+      $colorEnd 100%
+    );
+}

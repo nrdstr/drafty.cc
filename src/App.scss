@@ -1,0 +1,185 @@
+@import './styles/shared/variables';
+@import './styles/shared/mixins';
+@import './styles/shared/animations';
+@import './components/header/header';
+@import './components/drafts/drafts';
+@import './components/modify/modify';
+@import './components/login/login';
+@import './components/logout/logout';
+@import './components/loader/loader';
+@import './components/footer/footer';
+@import './components/goal-bar/goal-bar';
+@import './components/shared/progress-ring/progress-ring';
+@import './components/shared/progress-bar/progress-bar';
+
+@import url('https://use.fontawesome.com/releases/v5.4.1/css/all.css');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600|Work+Sans:500');
+
+#root {
+  display: flex;
+  justify-content: center;
+  background-color: $dark-blue;
+  @include linear-grad($dark-blue, lighten($dark-blue, 5%), 109deg);
+}
+
+body {
+  margin: 0;
+}
+
+.app {
+  @include flex(column, center, center);
+  width: 100vw;
+  max-width: 1800px;
+
+  &__wrapper {
+    @include flex(column, center, center);
+    position: relative;
+    height: 100%;
+    width: 100%;
+    max-width: 1500px;
+    text-align: center;
+    margin: 0;
+  }
+
+  &__header {
+    @include flex(row, space-between, center);
+    font-family: $font--main;
+    font-weight: 400;
+    font-size: 1.5rem;
+    color: white;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 30px 20px 5px 20px;
+    z-index: 2000;
+
+    @media (max-width: 768px) {
+      padding: 20px;
+    }
+
+    &--login {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    &--logout {
+      background: url('/logout.svg') no-repeat center;
+      background-size: contain;
+      width: 20px;
+      height: 20px;
+    }
+
+    &-avatar {
+      @include size(48px, 48px);
+      border-radius: 50%;
+      overflow: hidden;
+    }
+
+    a {
+      @include flex(row, center, center);
+      font-size: 2rem;
+      color: white;
+      cursor: pointer;
+    }
+  }
+
+  &__header-button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    transform: scale(1);
+    transform-origin: center;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+
+    img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid white;
+
+      @media (max-width: 768px) {
+        border: none;
+      }
+    }
+  }
+
+  &__date {
+    flex: 1;
+    box-sizing: border-box;
+    padding: 0 0 0 40px;
+    font-family: $font--main;
+    font-size: 1.4rem;
+    color: white;
+    margin: 0;
+
+    @media (max-width: 768px) {
+      font-size: 1rem;
+      padding: 0;
+      text-align: left;
+    }
+  }
+
+  &__title {
+    flex: 1;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__calories-wrapper {
+    flex: 1;
+    height: 100%;
+  }
+
+  &__buttons-container {
+    @include flex(row, center, center);
+    width: 100%;
+
+    a, button {
+      width: 100%;
+      padding: 20px 0;
+      @include flex(row, center, center);
+      cursor: pointer;
+      font-size: 2rem;
+      color: white;
+      border: 0;
+      outline: none;
+      background: transparent;
+      transition: all .2s ease-in-out;
+
+      &:focus,
+      &:hover {
+        background: lighten($dark-blue, 7%);
+      }
+    }
+  }
+}
+
+h1 {
+  font-family: 'Work Sans';
+  font-size: 3rem;
+  font-weight: 400;
+  color: white;
+  letter-spacing: -2px;
+}
+
+.hidden {
+  display: none;
+}
+
+.animate--fade-in {
+  animation: fade-in 0.2s ease-in;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

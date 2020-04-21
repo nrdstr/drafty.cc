@@ -1,0 +1,15 @@
+.header {
+
+    &__logo {
+        @include size(50px, 50px);
+        background: url('/logo/logo-solid.svg') no-repeat center;
+        background-size: contain;
+    }
+
+    &__username {
+        font-family: $font--main;
+        font-size: 1rem;
+        color: white;
+        margin: 0;
+    }
+}
