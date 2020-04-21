@@ -95,10 +95,11 @@ const Drafts = () => {
           <div className='drafts'>
             {drafts.map((draft, i) => {
               return <div key={draft.slice(0, 10)} className='draft' onClick={() => handleEditDraft(i)}>
-                <p>{draft}</p>
+                <p className='draft__text'>{draft}</p>
                 <button className='draft__delete' onClick={() => handleDeleteDraft(i)} />
               </div>
             })}
+            <p className='text text--medium text--light text--slim'>the end</p>
           </div>
         </div>
       )

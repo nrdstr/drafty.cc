@@ -29,7 +29,7 @@ body {
 .app {
   @include flex(column, center, center);
   width: 100vw;
-  max-width: 1800px;
+  max-width: 1200px;
 
   &__wrapper {
     @include flex(column, center, center);
@@ -182,4 +182,48 @@ h1 {
 @keyframes fade-in {
   from { opacity: 0; }
   to { opacity: 1; }
+}
+
+
+
+.text {
+  font-family: $font--main;
+  font-size: 1rem;
+  color: white;
+
+  &--slim {
+      font-weight: 300;
+  }
+
+  &--bold {
+      font-weight: 700;
+  }
+
+  &--light {
+      color: lighten($dark-blue, 15%);
+  }
+
+  &--blue {
+      color: $blue;
+  }
+
+  &--small {
+      font-size: 0.8rem;
+  }
+
+  &--medium {
+      font-size: 1.1rem;
+  }
+
+  &--large {
+      font-size: 3rem;
+  }
+
+  &--narrow {
+      letter-spacing: -2px;
+  }
+
+  &--italic {
+      font-style: italic;
+  }
 }
