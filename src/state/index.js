@@ -12,7 +12,7 @@ export const initialState = {
   },
   modify: {
     new_draft: false,
-    edit_draft: false
+    edit_draft: [false, null]
   },
   isModalActive: false,
   isLoading: false

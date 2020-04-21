@@ -3,7 +3,7 @@ import { useStateValue } from "../../state"
 import firebase from "../../utils/firebase"
 
 const Drafts = () => {
-  const [{ user }, dispatch] = useStateValue()
+  const [{ user, modify }, dispatch] = useStateValue()
 
   const getExistingUserData = () => {
     dispatch({
@@ -47,6 +47,17 @@ const Drafts = () => {
       })
   }
 
+  const handleEditDraft = index => {
+    const editArr = [true, index]
+    dispatch({
+      type: 'modify',
+      payload: {
+        ...modify,
+        edit_draft: editArr
+      }
+    })
+  }
+
   const handleDeleteDraft = index => {
     let d = user.drafts
     d.splice(index, 1)
@@ -83,7 +94,7 @@ const Drafts = () => {
         <div className='calories__container animate--fade-in'>
           <div className='drafts'>
             {drafts.map((draft, i) => {
-              return <div key={draft.slice(0, 10)} className='draft'>
+              return <div key={draft.slice(0, 10)} className='draft' onClick={() => handleEditDraft(i)}>
                 <p>{draft}</p>
                 <button className='draft__delete' onClick={() => handleDeleteDraft(i)} />
               </div>
