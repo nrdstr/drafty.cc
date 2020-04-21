@@ -70,9 +70,13 @@ body {
     }
 
     &-avatar {
-      @include size(48px, 48px);
+      @include size(75px, 75px);
       border-radius: 50%;
       overflow: hidden;
+
+      img {
+        @include size(100%, 100%);
+      }
     }
 
     a {

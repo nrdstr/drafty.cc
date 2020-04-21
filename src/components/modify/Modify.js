@@ -183,6 +183,7 @@ const Modify = () => {
       </div>
     )
   } else if (modify.edit_draft[0]) {
+    const draftURI = encodeURI(user.drafts[modify.edit_draft[1]])
     return (
       <div className="modify__container modify--open">
         <div className="logout__top-bar">
@@ -205,8 +206,12 @@ const Modify = () => {
             onClick={handleSubmitEditDraft}
           // disabled={disabled || error}
           >
-            DONE
+
+            SAVE
           </button>
+          <a href={`https://twitter.com/intent/tweet?text=${draftURI}`} target='_blank' className='modify__button-submit'>
+            TWEET
+            </a>
           {/* Error Section */}
           <p className={error ? "modify__error" : "hidden"}>
             {modify.add
