@@ -1,9 +1,11 @@
-import React, { useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import { useStateValue } from "../../state"
 import firebase from "../../utils/firebase"
 
 const Drafts = () => {
   const [{ user, modify, twit }, dispatch] = useStateValue()
+
+  const [drafts, setDrafts] = useState([])
 
   const getExistingUserData = () => {
     dispatch({
@@ -19,6 +21,7 @@ const Drafts = () => {
           if (data) {
             console.log('detected DB object', data)
             // console.log(user)
+            setDrafts(data.drafts)
             dispatch({
               type: "user",
               payload: {
@@ -61,9 +64,10 @@ const Drafts = () => {
   }
 
   const handleDeleteDraft = index => {
-    let d = user.drafts
+    let d = drafts
     d.splice(index, 1)
     console.log(index, d)
+    setDrafts(d)
     dispatch({
       type: 'user',
       payload: {
@@ -92,17 +96,18 @@ const Drafts = () => {
   }, [])
 
   if (user.isAuthenticated) {
-    console.log(twit)
-    if (user.drafts && user.drafts.length > 0) {
-      const drafts = user.drafts
+    if (drafts && drafts.length > 0) {
+      const d = drafts
 
       return (
         <div className='drafts__container animate--fade-in'>
           <div className='drafts'>
-            {drafts.map((draft, i) => {
-              return <div key={draft.slice(0, 10)} className='draft' onClick={() => handleEditDraft(i)}>
-                <p className='draft__text'>{draft}</p>
-                <button className='draft__delete' onClick={() => handleDeleteDraft(i)} />
+            {d.map((draft, i) => {
+              return <div key={draft.slice(0, 10)} className='draft'>
+                <p onClick={() => handleEditDraft(i)} className='draft__text'>{draft}</p>
+                <button className='draft__delete' onClick={() => handleDeleteDraft(i)}>
+                  <img src='/trash.svg' alt='Delete this draft' />
+                </button>
               </div>
             })}
             <p className='text text--medium text--light text--slim'>the end</p>

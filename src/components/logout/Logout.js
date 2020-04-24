@@ -29,8 +29,8 @@ const LogOut = props => {
         <div className='app__header-avatar'>
           <img alt='Avatar' src={user.avatar} />
         </div>
-        <button onClick={toggleModal}>
-          <i className='fa fa-backspace' />
+        <button className='overlay__cancel' onClick={toggleModal}>
+          <img src='/close.svg' alt='Close this page' />
         </button>
       </div>
       <div className='logout'>

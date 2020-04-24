@@ -60,3 +60,10 @@
     }
   }
 }
+
+.overlay {
+
+  &__cancel {
+    @include size(40px, 40px);
+  }
+}

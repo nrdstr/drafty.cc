@@ -8,7 +8,9 @@ const Controls = () => {
         dispatch({ type: 'modify', payload: { ...modify, [operator]: true } })
 
     return <div className='controls'>
-        <button className='controls__button' onClick={() => toggleModify('new_draft')}>+</button>
+        <button className='controls__button' onClick={() => toggleModify('new_draft')}>
+            <img src='/add.svg' alt='Create new draft' />
+        </button>
         <button
             className="app__header-button"
             onClick={() => dispatch({ type: "toggleModal", payload: true })}

@@ -20,5 +20,10 @@
         &:hover {
             transform: scale(1.05);
         }
+
+        img {
+            transform: rotate(45deg);
+            @include size(20px, 20px);
+        }
     }
 }

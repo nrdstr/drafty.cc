@@ -52,7 +52,8 @@ $transition: all 0.3s ease;
   @include flex(row, flex-start, center);
   width: 100%;
   padding: 20px;
-  padding-right: 30px;
+  // padding-right: 30px;
+  padding-right: 0;
   background-color: transparent;
   box-sizing: border-box;
   min-height: 100px;
@@ -85,6 +86,7 @@ $transition: all 0.3s ease;
     -webkit-line-clamp: 7;
     -webkit-box-orient: vertical;
     margin: 0;
+    flex: 1;
     font-family: $font--main;
     color: white;
     font-size: 1rem;
@@ -95,12 +97,12 @@ $transition: all 0.3s ease;
   &__delete {
     position: absolute;
     right: 10px;
-    @include size(20px, 20px);
     color: white;
     border: 0;
+    height: 100%;
+    padding: 0 10px;
+    flex-basis: 🈚 0px;
     background-color: transparent;
-    background: url('/trash.svg') no-repeat center;
-    background-size: contain;
     font-size: 1rem;
     opacity: 0;
     transform: scale(1);
@@ -110,6 +112,10 @@ $transition: all 0.3s ease;
 
     &:hover {
       background-color: #e93359;
+    }
+
+    img {
+      @include size(20px, 20px);
     }
   }
 }
