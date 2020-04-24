@@ -7,19 +7,17 @@ const Modify = () => {
     [error, setError] = useState(false),
     [text, setText] = useState(''),
     [original, setOriginal] = useState(''),
-    [{ user, modify, drafts }, dispatch] = useStateValue(),
+    [{ user, modify, drafts, animations }, dispatch] = useStateValue(),
     inputRef = useRef(null)
 
   const handleSubmitNewDraft = e => {
     e.preventDefault()
-    const d = user.drafts
+    const d = drafts
+    console.log(d)
     d.push(text)
     dispatch({
-      type: 'user',
-      payload: {
-        ...user,
-        drafts: d
-      }
+      type: 'drafts',
+      payload: d
     })
 
     try {
@@ -27,7 +25,7 @@ const Modify = () => {
         .database()
         .ref(`/users/${user.uid}`)
         .child("drafts")
-        .set(d)
+        .update(d)
 
       inputRef.current.value = ''
       toggleModify("new_draft")
@@ -44,7 +42,7 @@ const Modify = () => {
         .database()
         .ref(`/users/${user.uid}`)
         .child("drafts")
-        .set(user.drafts)
+        .update(drafts)
 
       closeEditModal(false)
     } catch (e) {
@@ -56,47 +54,54 @@ const Modify = () => {
 
   const handleEditDraftInput = e => {
     const text = e.target.value
-    let d = user.drafts
+    let d = drafts
     d[modify.edit_draft[1]] = text
-    console.log(d)
-    // d[modify.edit_drafts[1]] = e.target.value
     dispatch({
-      type: 'user',
-      payload: {
-        ...user,
-        drafts: d
-      }
+      type: 'drafts',
+      payload: drafts
     })
   }
 
-  const toggleModify = operation =>
-    dispatch({ type: "modify", payload: { ...modify, [operation]: false } })
+  const toggleModify = operation => {
+    dispatch({
+      type: 'animations',
+      payload: {
+        ...animations,
+        overlay: 'animate--fade-out'
+      }
+    })
+    setTimeout(() => {
+      dispatch({ type: "modify", payload: { ...modify, [operation]: false } })
+    }, 200)
+  }
 
   const closeEditModal = cancel => {
-    let d = user.drafts
+    let d = drafts
     if (cancel) {
       d[modify.edit_draft[1]] = original
-      dispatch({ type: 'user', payload: { ...user, drafts: d } })
+      dispatch({
+        type: 'drafts',
+        payload: drafts
+      })
     }
     dispatch({ type: 'modify', payload: { ...modify, edit_draft: [false, null] } })
   }
 
   useEffect(() => {
     if (modify.edit_draft[0]) {
-      setOriginal(user.drafts[modify.edit_draft[1]])
-      console.log('set original to ', user.drafts[modify.edit_draft[1]])
+      setOriginal(drafts[modify.edit_draft[1]])
     }
-  }, [modify.edit_draft, original, user.drafts])
+  }, [modify.edit_draft, original, drafts])
 
   if (modify.new_draft) {
     return (
-      <div className="modify__container modify--open animate--fade-in">
+      <div className={`modify__container modify--open ${animations.overlay}`}>
         <div className="logout__top-bar">
           <div className='app__header-avatar'>
             <img alt='Avatar' src={user.avatar} />
           </div>
-          <button onClick={() => toggleModify("new_draft")}>
-            <i className="fa fa-backspace" />
+          <button className='overlay__cancel' onClick={() => toggleModify('new_draft')}>
+            <img src='/close.svg' alt='Close this page' />
           </button>
         </div>
         <form>
@@ -125,12 +130,15 @@ const Modify = () => {
       </div>
     )
   } else if (modify.edit_draft[0]) {
-    const draftURI = encodeURI(user.drafts[modify.edit_draft[1]])
+    const draftURI = encodeURI(drafts[modify.edit_draft[1]])
     return (
       <div className="modify__container modify--open">
         <div className="logout__top-bar">
-          <button onClick={() => closeEditModal(true)}>
-            <i className="fa fa-backspace" />
+          <div className='app__header-avatar'>
+            <img alt='Avatar' src={user.avatar} />
+          </div>
+          <button className='overlay__cancel' onClick={() => closeEditModal(true)}>
+            <img src='/close.svg' alt='Close this page' />
           </button>
         </div>
         <form>
@@ -139,7 +147,7 @@ const Modify = () => {
             placeholder="Have an idea?"
             className="modify__input"
             onChange={handleEditDraftInput}
-            value={user.drafts[modify.edit_draft[1]]}
+            value={drafts[modify.edit_draft[1]]}
             ref={inputRef}
             style={error ? { borderBottom: "2px solid red" } : null}
           />

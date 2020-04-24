@@ -40,13 +40,25 @@
       font-family: $font--main;
       color: white;
       font-size: 2rem;
+      resize: none;
       outline: 0;
       transition: $transition--standard;
 
-      &::placeholder {
-        color: white;
+      &::placeholder,
+      &::-webkit-placeholder {
+        color: darken($blue--light, 15%);
+        transition: $transition--standard;
+      }
+
+      &:focus,
+      &:focus-within {
+        &::placeholder,
+        &::-webkit-placeholder {
+          color: $blue--light;
+        }
       }
     }
+
 
     input[type=number]::-webkit-inner-spin-button,
     input[type=number]::-webkit-outer-spin-button {

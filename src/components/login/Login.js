@@ -5,7 +5,7 @@ import Footer from "../footer/Footer"
 import { twitter, auth } from "../../utils/firebase"
 
 const Login = () => {
-  const [{ user, twit }, dispatch] = useStateValue()
+  const [{ user }, dispatch] = useStateValue()
 
   const fetchTwitterUserProfile = async id => {
     const url = `https://api.stellr.digital/twitter?id=${id}`
@@ -13,8 +13,6 @@ const Login = () => {
     try {
       const data = await fetch(url)
       const json = await data.json()
-
-
       dispatch({
         type: 'twit',
         payload: {
@@ -24,9 +22,6 @@ const Login = () => {
           tweets: json.statuses_count
         }
       })
-
-      console.log('this stupid shit')
-
     } catch (e) {
       console.error(e)
     }
@@ -37,7 +32,6 @@ const Login = () => {
       try {
         if (account) {
           const userInfo = await account
-          console.log(userInfo)
 
           let avatar = userInfo.photoURL
           avatar = avatar.replace("_normal", '')
@@ -49,11 +43,10 @@ const Login = () => {
               uid: auth.currentUser.uid,
               twitterID: userInfo.providerData[0].uid,
               username: userInfo.displayName,
-              avatar: avatar,
-              drafts: userInfo.drafts ? userInfo.drafts : []
+              avatar: avatar
             }
           })
-          console.log()
+
           fetchTwitterUserProfile(userInfo.providerData[0].uid)
         }
         dispatch({

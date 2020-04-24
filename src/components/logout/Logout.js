@@ -4,9 +4,9 @@ import { useStateValue } from '../../state'
 import { auth } from '../../utils/firebase'
 
 const LogOut = props => {
-  const [{ user, isModalActive }, dispatch] = useStateValue()
+  const [{ user, toggleLogout }, dispatch] = useStateValue()
 
-  const toggleModal = () => dispatch({ type: 'toggleModal', payload: false })
+  const toggleModal = () => dispatch({ type: 'toggleLogout', payload: false })
 
   const handleLogOut = () => {
     auth.signOut()
@@ -22,7 +22,7 @@ const LogOut = props => {
       })
   }
 
-  const showLogout = isModalActive ? 'logout__container' : 'hidden'
+  const showLogout = toggleLogout ? 'logout__container' : 'hidden'
   return (
     <div className={showLogout}>
       <div className='logout__top-bar'>

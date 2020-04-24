@@ -2,10 +2,20 @@ import React from 'react'
 import { useStateValue } from '../../state'
 
 const Controls = () => {
-    const [{ modify }, dispatch] = useStateValue()
+    const [{ modify, animations }, dispatch] = useStateValue()
 
-    const toggleModify = operator =>
+    const toggleModify = operator => {
+        dispatch({
+            type: 'animations',
+            payload: {
+                ...animations,
+                overlay: 'animate--fade-in'
+            }
+        })
         dispatch({ type: 'modify', payload: { ...modify, [operator]: true } })
+    }
+
+    const toggleLogout = () => dispatch({ type: "toggleLogout", payload: true })
 
     return <div className='controls'>
         <button className='controls__button' onClick={() => toggleModify('new_draft')}>
@@ -13,7 +23,7 @@ const Controls = () => {
         </button>
         <button
             className="app__header-button"
-            onClick={() => dispatch({ type: "toggleModal", payload: true })}
+            onClick={toggleLogout}
         >
             <div className="app__header--logout" />
         </button>

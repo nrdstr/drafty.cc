@@ -3,9 +3,9 @@ import { useStateValue } from "../../state"
 import firebase from "../../utils/firebase"
 
 const Drafts = () => {
-  const [{ user, modify, twit }, dispatch] = useStateValue()
+  const [{ user, modify, drafts }, dispatch] = useStateValue()
 
-  const [drafts, setDrafts] = useState([])
+  // const [drafts, setDrafts] = useState([])
 
   const getExistingUserData = () => {
     dispatch({
@@ -21,14 +21,21 @@ const Drafts = () => {
           if (data) {
             console.log('detected DB object', data)
             // console.log(user)
-            setDrafts(data.drafts)
-            dispatch({
-              type: "user",
-              payload: {
-                ...user,
-                data
-              }
-            })
+            // setDrafts(data.drafts)
+            if (data.drafts && data.drafts.length > 0) {
+              dispatch({
+                type: 'drafts',
+                payload: data.drafts
+              })
+            }
+
+            // dispatch({
+            //   type: "user",
+            //   payload: {
+            //     ...user,
+            //     data
+            //   }
+            // })
             dispatch({
               type: 'toggleLoader',
               payload: false
@@ -67,13 +74,9 @@ const Drafts = () => {
     let d = drafts
     d.splice(index, 1)
     console.log(index, d)
-    setDrafts(d)
     dispatch({
-      type: 'user',
-      payload: {
-        ...user,
-        drafts: d
-      }
+      type: 'drafts',
+      payload: d
     })
 
     try {

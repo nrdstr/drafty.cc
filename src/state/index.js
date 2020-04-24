@@ -8,15 +8,17 @@ export const initialState = {
     uid: null,
     username: null,
     avatar: null,
-    drafts: [],
-    screen_name: null
   },
+  drafts: [],
   twit: {},
   modify: {
     new_draft: false,
     edit_draft: [false, null]
   },
-  isModalActive: false,
+  animations: {
+    overlay: 'animate--fade-in'
+  },
+  toggleLogout: false,
   isLoading: false
 }
 

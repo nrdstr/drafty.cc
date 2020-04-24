@@ -5,20 +5,30 @@ export const rootReducer = (state, action) => {
         ...state,
         user: action.payload
       }
+    case "drafts":
+      return {
+        ...state,
+        drafts: action.payload
+      }
     case "twit":
       return {
         ...state,
-        counts: action.payload
+        twit: action.payload
+      }
+    case "animations":
+      return {
+        ...state,
+        animations: action.payload
       }
     case "toggleLoader":
       return {
         ...state,
         isLoading: action.payload
       }
-    case "toggleModal":
+    case "toggleLogout":
       return {
         ...state,
-        isModalActive: action.payload
+        toggleLogout: action.payload
       }
     case "modify":
       return {
