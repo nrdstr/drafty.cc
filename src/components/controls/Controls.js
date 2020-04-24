@@ -15,7 +15,16 @@ const Controls = () => {
         dispatch({ type: 'modify', payload: { ...modify, [operator]: true } })
     }
 
-    const toggleLogout = () => dispatch({ type: "toggleLogout", payload: true })
+    const toggleLogout = () => {
+        dispatch({
+            type: 'animations',
+            payload: {
+                ...animations,
+                overlay: 'animate--fade-in'
+            }
+        })
+        dispatch({ type: "toggleLogout", payload: true })
+    }
 
     return <div className='controls'>
         <button className='controls__button' onClick={() => toggleModify('new_draft')}>

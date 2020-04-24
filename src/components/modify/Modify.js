@@ -84,7 +84,16 @@ const Modify = () => {
         payload: drafts
       })
     }
-    dispatch({ type: 'modify', payload: { ...modify, edit_draft: [false, null] } })
+    dispatch({
+      type: 'animations',
+      payload: {
+        ...animations,
+        overlay: 'animate--fade-out'
+      }
+    })
+    setTimeout(() => {
+      dispatch({ type: 'modify', payload: { ...modify, edit_draft: [false, null] } })
+    }, 200)
   }
 
   useEffect(() => {
@@ -132,7 +141,7 @@ const Modify = () => {
   } else if (modify.edit_draft[0]) {
     const draftURI = encodeURI(drafts[modify.edit_draft[1]])
     return (
-      <div className="modify__container modify--open">
+      <div className={`modify__container modify--open ${animations.overlay}`}>
         <div className="logout__top-bar">
           <div className='app__header-avatar'>
             <img alt='Avatar' src={user.avatar} />

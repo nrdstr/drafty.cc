@@ -3,7 +3,7 @@ import { useStateValue } from "../../state"
 import firebase from "../../utils/firebase"
 
 const Drafts = () => {
-  const [{ user, modify, drafts }, dispatch] = useStateValue()
+  const [{ user, modify, drafts, animations }, dispatch] = useStateValue()
 
   // const [drafts, setDrafts] = useState([])
 
@@ -61,6 +61,13 @@ const Drafts = () => {
 
   const handleEditDraft = index => {
     const editArr = [true, index]
+    dispatch({
+      type: 'animations',
+      payload: {
+        ...animations,
+        overlay: 'animate--fade-in'
+      }
+    })
     dispatch({
       type: 'modify',
       payload: {
