@@ -2,8 +2,8 @@ import React from "react"
 
 const Footer = () => {
   return (
-    <div className="footer__container">
-      <p>&copy; Simplr 2019</p>
+    <div className="text footer__container">
+      <p>&copy; Twotter 2020</p>
     </div>
   )
 }

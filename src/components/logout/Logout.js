@@ -26,14 +26,18 @@ const LogOut = props => {
   return (
     <div className={showLogout}>
       <div className='logout__top-bar'>
+        <div className='app__header-avatar'>
+          <img alt='Avatar' src={user.avatar} />
+        </div>
         <button onClick={toggleModal}>
           <i className='fa fa-backspace' />
         </button>
       </div>
-      <div className='login__links'>
+      <div className='logout'>
+        <p className='text text--medium text--slim'>Are you sure?</p>
         <button className='logout__button'
           onClick={handleLogOut}
-          title='Sign in with Google'>
+          title='Log Out'>
           Log Out
         </button>
       </div>

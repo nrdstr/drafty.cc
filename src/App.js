@@ -12,9 +12,11 @@ function App() {
     <StateProvider initialState={initialState} reducer={rootReducer}>
       <Div100vh className="app">
         <main className="app__wrapper">
-          <Loader />
-          <Login />
-          <Home />
+          <div className='app__inner'>
+            <Loader />
+            <Login />
+            <Home />
+          </div>
         </main>
       </Div100vh>
     </StateProvider>

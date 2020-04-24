@@ -1,26 +1,31 @@
 export const rootReducer = (state, action) => {
-    switch (action.type) {
-      case "user":
-        return {
-          ...state,
-          user: action.payload
-        }
-      case "toggleLoader":
-        return {
-          ...state,
-          isLoading: action.payload
-        }
-      case "toggleModal":
-        return {
-          ...state,
-          isModalActive: action.payload
-        }
-      case "modify":
-        return {
-          ...state,
-          modify: action.payload
-        }
-      default:
-        return state
-    }
+  switch (action.type) {
+    case "user":
+      return {
+        ...state,
+        user: action.payload
+      }
+    case "twit":
+      return {
+        ...state,
+        counts: action.payload
+      }
+    case "toggleLoader":
+      return {
+        ...state,
+        isLoading: action.payload
+      }
+    case "toggleModal":
+      return {
+        ...state,
+        isModalActive: action.payload
+      }
+    case "modify":
+      return {
+        ...state,
+        modify: action.payload
+      }
+    default:
+      return state
   }
+}

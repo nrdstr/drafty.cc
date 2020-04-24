@@ -1,6 +1,12 @@
 .header {
 
+    &__user {
+        @include flex(row, center, center);
+    }
+
     &__logo {
+        position: absolute;
+        left: calc(50% - 25px);
         @include size(50px, 50px);
         background: url('/logo/logo-solid.svg') no-repeat center;
         background-size: contain;
@@ -11,5 +17,6 @@
         font-size: 1rem;
         color: white;
         margin: 0;
+        margin-left: 20px;
     }
 }

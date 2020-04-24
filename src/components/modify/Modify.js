@@ -10,31 +10,6 @@ const Modify = () => {
     [{ user, modify, drafts }, dispatch] = useStateValue(),
     inputRef = useRef(null)
 
-  const modifyCalories = amount => {
-    const currentTotalCalories = user.totalCalories
-    let updatedTotalCalories
-
-    if (modify.add) {
-      updatedTotalCalories = currentTotalCalories + amount
-    } else {
-      updatedTotalCalories = currentTotalCalories - amount
-    }
-
-    dispatch({
-      type: "user",
-      payload: {
-        ...user,
-        totalCalories: updatedTotalCalories
-      }
-    })
-
-    firebase
-      .database()
-      .ref(`/users/${user.uid}`)
-      .child("totalCalories")
-      .set(updatedTotalCalories)
-  }
-
   const handleSubmitNewDraft = e => {
     e.preventDefault()
     const d = user.drafts
@@ -94,40 +69,6 @@ const Modify = () => {
     })
   }
 
-  const changeGoal = e => {
-    e.preventDefault()
-    editGoal(inputRef.current.value)
-    dispatch({
-      type: "modify",
-      payload: {
-        ...modify,
-        edit: false
-      }
-    })
-  }
-
-  const editGoal = amount => {
-    dispatch({
-      type: "user",
-      payload: {
-        ...user,
-        dailyGoal: amount
-      }
-    })
-    firebase
-      .database()
-      .ref(`/users/${user.uid}`)
-      .child("dailyGoal")
-      .set(amount)
-    dispatch({
-      type: "modify",
-      payload: {
-        ...modify,
-        edit: false
-      }
-    })
-  }
-
   const toggleModify = operation =>
     dispatch({ type: "modify", payload: { ...modify, [operation]: false } })
 
@@ -140,8 +81,6 @@ const Modify = () => {
     dispatch({ type: 'modify', payload: { ...modify, edit_draft: [false, null] } })
   }
 
-
-
   useEffect(() => {
     if (modify.edit_draft[0]) {
       setOriginal(user.drafts[modify.edit_draft[1]])
@@ -151,8 +90,11 @@ const Modify = () => {
 
   if (modify.new_draft) {
     return (
-      <div className="modify__container modify--open">
+      <div className="modify__container modify--open animate--fade-in">
         <div className="logout__top-bar">
+          <div className='app__header-avatar'>
+            <img alt='Avatar' src={user.avatar} />
+          </div>
           <button onClick={() => toggleModify("new_draft")}>
             <i className="fa fa-backspace" />
           </button>
@@ -171,7 +113,7 @@ const Modify = () => {
             onClick={handleSubmitNewDraft}
           // disabled={disabled || error}
           >
-            DONE
+            Save
           </button>
           {/* Error Section */}
           <p className={error ? "modify__error" : "hidden"}>
@@ -207,7 +149,7 @@ const Modify = () => {
           // disabled={disabled || error}
           >
 
-            SAVE
+            Save
           </button>
           <a href={`https://twitter.com/intent/tweet?text=${draftURI}`} target='_blank' className='modify__button-submit'>
             TWEET

@@ -7,12 +7,15 @@ const Controls = () => {
     const toggleModify = operator =>
         dispatch({ type: 'modify', payload: { ...modify, [operator]: true } })
 
-    return (
-        <div className='app__buttons-container animate--fade-in'>
-            {/* <button onClick={() => toggleModify('subtract')}>-</button> */}
-            <button onClick={() => toggleModify('new_draft')}>+</button>
-        </div>
-    )
+    return <div className='controls'>
+        <button className='controls__button' onClick={() => toggleModify('new_draft')}>+</button>
+        <button
+            className="app__header-button"
+            onClick={() => dispatch({ type: "toggleModal", payload: true })}
+        >
+            <div className="app__header--logout" />
+        </button>
+    </div>
 }
 
 export default Controls

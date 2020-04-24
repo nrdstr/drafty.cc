@@ -15,8 +15,6 @@ const Home = () => {
             <>
                 <Header />
                 <Drafts />
-                {/* <GoalBar /> */}
-                <Controls />
                 <Modify />
                 <LogOut />
             </>

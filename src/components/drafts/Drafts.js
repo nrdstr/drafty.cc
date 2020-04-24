@@ -3,7 +3,7 @@ import { useStateValue } from "../../state"
 import firebase from "../../utils/firebase"
 
 const Drafts = () => {
-  const [{ user, modify }, dispatch] = useStateValue()
+  const [{ user, modify, twit }, dispatch] = useStateValue()
 
   const getExistingUserData = () => {
     dispatch({
@@ -21,7 +21,10 @@ const Drafts = () => {
             // console.log(user)
             dispatch({
               type: "user",
-              payload: data
+              payload: {
+                ...user,
+                data
+              }
             })
             dispatch({
               type: 'toggleLoader',
@@ -31,7 +34,6 @@ const Drafts = () => {
             const userData = {
               ...user
             }
-            console.log(userData)
             firebase.database()
               .ref(`/users/${user.uid}/`)
               .set(JSON.parse(JSON.stringify(userData)))
@@ -81,17 +83,21 @@ const Drafts = () => {
     }
   }
 
+  const toggleModify = () =>
+    dispatch({ type: 'modify', payload: { ...modify, new_draft: true } })
+
   useEffect(() => {
     getExistingUserData()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   if (user.isAuthenticated) {
-    if (user.drafts.length > 0) {
+    console.log(twit)
+    if (user.drafts && user.drafts.length > 0) {
       const drafts = user.drafts
 
       return (
-        <div className='calories__container animate--fade-in'>
+        <div className='drafts__container animate--fade-in'>
           <div className='drafts'>
             {drafts.map((draft, i) => {
               return <div key={draft.slice(0, 10)} className='draft' onClick={() => handleEditDraft(i)}>
@@ -105,11 +111,19 @@ const Drafts = () => {
       )
     } else {
       return (
-        <div className='calories__container animate--fade-in'>
-          <p className='calories__text'>
-            This is where drafts will go!
-          </p>
-          <button>Add your first entry+</button>
+        <div className='drafts__container animate--fade-in'>
+          <div className='drafts placeholder'>
+            <div className='placeholder__art' />
+
+            <button onClick={toggleModify} className='placeholder__button'>
+              <span className='btn__inner'>
+                <span className='icon fas btn-text-one text--slim'>Create a draft</span>
+                <span className='icon fas btn-text-two' />
+              </span>
+            </button>
+
+            {/* <button onClick={toggleModify}>Add your first entry+</button> */}
+          </div>
         </div>
       )
     }

@@ -1,0 +1,24 @@
+.controls {
+    @include flex(row, center, center);
+    height: 100%;
+
+    &__button {
+        @include flex(row, center, center);
+        cursor: pointer;
+        font-size: 2rem;
+        color: white;
+        border: 0;
+        border-radius: 50%;
+        margin-right: 20px;
+        outline: none;
+        transform: scale(1);
+        transform-origin: center;
+        background: transparent;
+        transition: all .2s ease-in-out;
+
+        &:focus,
+        &:hover {
+            transform: scale(1.05);
+        }
+    }
+}

@@ -5,7 +5,7 @@ import Footer from "../footer/Footer"
 import { twitter, auth } from "../../utils/firebase"
 
 const Login = () => {
-  const [{ user }, dispatch] = useStateValue()
+  const [{ user, twit }, dispatch] = useStateValue()
 
   const fetchTwitterUserProfile = async id => {
     const url = `https://api.stellr.digital/twitter?id=${id}`
@@ -15,7 +15,18 @@ const Login = () => {
       const json = await data.json()
 
 
-      // console.log(json)
+      dispatch({
+        type: 'twit',
+        payload: {
+          screenName: json.screen_name,
+          followers: json.followers_count,
+          following: json.friends_count,
+          tweets: json.statuses_count
+        }
+      })
+
+      console.log('this stupid shit')
+
     } catch (e) {
       console.error(e)
     }
@@ -38,7 +49,8 @@ const Login = () => {
               uid: auth.currentUser.uid,
               twitterID: userInfo.providerData[0].uid,
               username: userInfo.displayName,
-              avatar: avatar
+              avatar: avatar,
+              drafts: userInfo.drafts ? userInfo.drafts : []
             }
           })
           console.log()
@@ -54,18 +66,24 @@ const Login = () => {
     })
   }
 
-  const loginWithTwitter = () => {
-    auth.signInWithPopup(twitter).then(result => {
+  const loginWithTwitter = async () => {
+    auth.signInWithPopup(twitter).then(async result => {
       const userData = result.additionalUserInfo.profile
 
+      let avatar = userData.profile_image_url
+      avatar = avatar.replace("_normal", '')
+
+      await fetchTwitterUserProfile(userData.id)
+
       dispatch({
-        type: "user",
+        type: 'user',
         payload: {
           ...user,
           isAuthenticated: true,
           uid: auth.currentUser.uid,
+          twitterID: userData.id,
           username: userData.name,
-          avatar: userData.profile_image_url
+          avatar: avatar
         }
       })
 

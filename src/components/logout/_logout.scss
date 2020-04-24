@@ -2,16 +2,18 @@
 @import '../../styles/shared/variables';
 
 .logout {
+  @include flex(column, center, center);
+  @include size(100%, 100%);
 
   &__container{
     @include flex(column, center, center);
     position: absolute;
     top: 0;
     height: 100%;
-    width: 100vw;
+    width: 100%;
     box-sizing: border-box;
     padding: 0 20px;
-    @include linear-grad(#0b8aff, lighten(#0b8aff, 10%), 109deg);
+    background-color: $dark-blue;
     z-index: 3000;
   }
 
@@ -21,7 +23,6 @@
     width: 50%;
     box-sizing: border-box;
     background: none;
-    border: 2px solid lighten(#0b8aff, 10%);
     outline: none;
     cursor: pointer;
     font-size: 1.3rem;
@@ -40,13 +41,13 @@
   }
 
   &__top-bar {
-    @include flex(row, flex-end, center);
+    @include flex(row, space-between, center);
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     box-sizing: border-box;
-    padding: 20px;
+    padding: 10px 20px;
 
     button {
       color: white;
@@ -55,6 +56,7 @@
       outline: 0;
       border: none;
       font-size: 2rem;
+      z-index: 3000;
     }
   }
 }

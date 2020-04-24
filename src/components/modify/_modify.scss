@@ -17,9 +17,9 @@
 
   &__container {
     position: absolute;
-    width: 100vw;
+    width: 100%;
     height: 100%;
-    @include linear-grad(#0b8aff, lighten(#0b8aff, 10%), 109deg);
+    background-color: $dark-blue;
     transition: all 0.5s ease;
     z-index: 9999;
 
@@ -29,22 +29,19 @@
     }
 
     textarea {
+      flex: 1;
       background: transparent;
       border: none;
-      border-bottom: 2px solid white;
-      margin: 20px 0;
-      width: 50%;
+      // border-bottom: 2px solid white;
+      width: 100%;
+      z-index: 2000;
       box-sizing: border-box;
-      padding: 20px;
+      padding: 25px 105px 10px 115px;
       font-family: $font--main;
       color: white;
       font-size: 2rem;
       outline: 0;
       transition: $transition--standard;
-
-      @media (max-width: 768px) {
-        width: 90%;
-      }
 
       &::placeholder {
         color: white;

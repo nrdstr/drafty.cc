@@ -8,8 +8,10 @@ export const initialState = {
     uid: null,
     username: null,
     avatar: null,
-    drafts: []
+    drafts: [],
+    screen_name: null
   },
+  twit: {},
   modify: {
     new_draft: false,
     edit_draft: [false, null]

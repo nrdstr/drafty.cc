@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap');
 @import './styles/shared/variables';
 @import './styles/shared/mixins';
 @import './styles/shared/animations';
 @import './components/header/header';
 @import './components/drafts/drafts';
+@import './components/controls/controls';
 @import './components/modify/modify';
 @import './components/login/login';
 @import './components/logout/logout';
@@ -19,37 +21,56 @@
   display: flex;
   justify-content: center;
   background-color: $dark-blue;
-  @include linear-grad($dark-blue, lighten($dark-blue, 5%), 109deg);
+  min-height: 100%;
+  // @include linear-grad($dark-blue, lighten($dark-blue, 5%), 109deg);
+  // overflow: hidden;
 }
 
 body {
   margin: 0;
 }
 
+::-webkit-scrollbar {
+  display: none; /* Chrome Safari */
+}
+
 .app {
   @include flex(column, center, center);
   width: 100vw;
-  max-width: 1200px;
+  overflow: hidden;
 
   &__wrapper {
-    @include flex(column, center, center);
+    @include flex(column, flex-start, center);
     position: relative;
     height: 100%;
     width: 100%;
-    max-width: 1500px;
-    text-align: center;
+    overflow-y: auto;
+    scrollbar-color: red yellow;
     margin: 0;
   }
 
+  &__inner {
+    position: relative;
+    @include flex(column, flex-start, center);
+    height: 100%;
+    width: 100%;
+    max-width: 1200px;
+    text-align: center;
+  }
+
   &__header {
+    position: fixed;
+    top: 0;
     @include flex(row, space-between, center);
     font-family: $font--main;
     font-weight: 400;
     font-size: 1.5rem;
+    background-color: $dark-blue;
     color: white;
     width: 100%;
+    max-width: 1200px;
     box-sizing: border-box;
-    padding: 30px 20px 5px 20px;
+    padding: 10px 20px 10px 20px;
     z-index: 2000;
 
     @media (max-width: 768px) {
@@ -65,8 +86,8 @@ body {
     &--logout {
       background: url('/logout.svg') no-repeat center;
       background-size: contain;
-      width: 20px;
-      height: 20px;
+      height: 23px;
+      margin: 0;
     }
 
     &-avatar {
@@ -145,23 +166,27 @@ body {
 
   &__buttons-container {
     @include flex(row, center, center);
-    width: 100%;
+    @include size(101px, 101px);
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
 
     a, button {
       width: 100%;
-      padding: 20px 0;
       @include flex(row, center, center);
+      @include size(100%, 100%);
       cursor: pointer;
       font-size: 2rem;
       color: white;
       border: 0;
+      border-radius: 50%;
       outline: none;
-      background: transparent;
+      background: lighten($dark-blue, 7%);
       transition: all .2s ease-in-out;
 
       &:focus,
       &:hover {
-        background: lighten($dark-blue, 7%);
+        background: lighten($dark-blue, 17%);
       }
     }
   }
@@ -194,9 +219,14 @@ h1 {
   font-family: $font--main;
   font-size: 1rem;
   color: white;
+  font-weight: 500;
+
+  &--dark {
+    color: $dark-blue;
+  }
 
   &--slim {
-      font-weight: 300;
+      font-weight: 400;
   }
 
   &--bold {
@@ -204,7 +234,7 @@ h1 {
   }
 
   &--light {
-      color: lighten($dark-blue, 15%);
+      color: $blue--light;
   }
 
   &--blue {
