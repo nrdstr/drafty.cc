@@ -22,8 +22,6 @@
   justify-content: center;
   background-color: $dark-blue;
   min-height: 100%;
-  // @include linear-grad($dark-blue, lighten($dark-blue, 5%), 109deg);
-  // overflow: hidden;
 }
 
 body {
@@ -31,7 +29,7 @@ body {
 }
 
 ::-webkit-scrollbar {
-  display: none; /* Chrome Safari */
+  display: none;
 }
 
 button {
@@ -84,7 +82,7 @@ button {
     z-index: 2000;
 
     @media (max-width: 768px) {
-      padding: 20px;
+      padding: 20px 10px;
     }
 
     &--login {
@@ -105,6 +103,10 @@ button {
       @include size(75px, 75px);
       border-radius: 50%;
       overflow: hidden;
+
+      @media (max-width: 768px) {
+        @include size(50px, 50px);
+      }
 
       img {
         @include size(100%, 100%);
@@ -131,10 +133,6 @@ button {
     transform: scale(1);
     transform-origin: center;
     transition: transform 0.3s ease;
-
-    &:hover {
-      // transform: scale(1.05);
-    }
 
     img {
       width: 40px;

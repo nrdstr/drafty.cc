@@ -97,8 +97,16 @@ const Drafts = () => {
     }
   }
 
-  const toggleModify = () =>
+  const toggleModify = () => {
     dispatch({ type: 'modify', payload: { ...modify, new_draft: true } })
+    dispatch({
+      type: 'animations',
+      payload: {
+        ...animations,
+        overlay: 'animate--fade-in'
+      }
+    })
+  }
 
   useEffect(() => {
     getExistingUserData()
@@ -122,6 +130,9 @@ const Drafts = () => {
             })}
             <p className='text text--medium text--light text--slim'>the end</p>
           </div>
+          <button className='drafts__add-mobile' onClick={toggleModify}>
+            <img src='/add.svg' alt='Create new draft' />
+          </button>
         </div>
       )
     } else {
@@ -137,8 +148,10 @@ const Drafts = () => {
               </span>
             </button>
 
-            {/* <button onClick={toggleModify}>Add your first entry+</button> */}
           </div>
+          <button className='drafts__add-mobile' onClick={toggleModify}>
+            <img src='/add.svg' alt='Create new draft' />
+          </button>
         </div>
       )
     }

@@ -6,37 +6,6 @@
   &__container {
     @include flex(row, center, center);
     min-height: 100px;
-
-    @media (max-width: 768px) {
-      min-height: 173px;
-      margin-bottom: 20px;
-    }
-  }
-
-  &__circle-container {
-
-    @media (max-width: 768px) {
-      width: 100%;
-      @include flex(row, flex-end, center)
-    }
-  }
-
-  &__circle {
-    position: relative;
-    width: 80px;
-    height: 80px;
-    margin-bottom: 20px;
-    stroke: transparent;
-    z-index: 10;
-
-    @media (max-width: 768px) {
-      width: 150px;
-      height: 150px;
-    }
-
-    text {
-      // fill: #00a1f0 !important;
-    }
   }
 
   &__text {
@@ -46,10 +15,6 @@
     text-align: left;
     margin: 0;
     padding: 0;
-
-    @media (max-width: 768px) {
-      margin-left: 20px;
-    }
   }
 }
 
@@ -57,12 +22,6 @@
   width: 50px !important;
   margin-right: 20px;
   margin-top: 12px;
-  // margin-bottom: 30px;
-
-  @media (max-width: 768px) {
-    width: 50% !important;
-    margin-bottom: 10px;
-  }
 }
 
 .CircularProgressbar .CircularProgressbar-text {
@@ -76,6 +35,5 @@
 }
 
 .CircularProgressbar .CircularProgressbar-path {
-  // stroke: #00a1f0 !important;
   z-index: 10;
 }

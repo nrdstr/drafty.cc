@@ -16,9 +16,8 @@
         background: transparent;
         transition: all .2s ease-in-out;
 
-        &:focus,
-        &:hover {
-            // transform: scale(1.05);
+        @media (max-width: 768px) {
+            display: none;
         }
 
         img {

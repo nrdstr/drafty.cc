@@ -11,6 +11,11 @@
         background: url('/logo/logo-solid.svg') no-repeat center;
         background-size: contain;
 
+        @media (max-width: 768px) {
+            left: calc(50% - 20px);
+            @include size(40px, 40px);
+          }
+
         &--login {
             position: static;
         }

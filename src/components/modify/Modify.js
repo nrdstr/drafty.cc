@@ -134,6 +134,8 @@ const Modify = () => {
   }
 
   useEffect(() => {
+    setCharCount(0)
+    handleProgressRing(0)
     if (modify.edit_draft[0]) {
       setOriginal(drafts[modify.edit_draft[1]])
       setDisabled(false)
@@ -218,9 +220,7 @@ const Modify = () => {
             style={error ? { borderBottom: "2px solid red" } : null}
           />
           <div className='modify__controls'>
-            <div className='modify__char-count'>
-              <ProgressRing goal={280} progress={charProgress} count={charCount} />
-            </div>
+            <ProgressRing goal={280} progress={charProgress} count={charCount} />
             <button
               className="modify__button"
               onClick={handleCopyText}

@@ -32,7 +32,6 @@
       flex: 1;
       background: transparent;
       border: none;
-      // border-bottom: 2px solid white;
       width: 100%;
       z-index: 2000;
       box-sizing: border-box;
@@ -43,6 +42,11 @@
       resize: none;
       outline: 0;
       transition: $transition--standard;
+
+      @media (max-width: 768px) {
+        padding: 25px 65px 10px 80px;
+        font-size: 1.5rem;
+      }
 
       &::placeholder,
       &::-webkit-placeholder {
@@ -79,6 +83,8 @@
   &__controls {
     @include flex(row, flex-end, center);
     width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
     padding-bottom: 20px;
   }
 
