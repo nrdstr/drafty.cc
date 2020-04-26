@@ -104,13 +104,16 @@ const Login = () => {
       <div className="login__container">
         <Header />
         <div className="login__links">
-          <a
-            className="login__link"
-            onClick={() => loginWithTwitter()}
-            title="Sign in with Twitter"
-          >
-            <i className="fab fa-twitter" />
-          </a>
+
+          <div className='placeholder'>
+            <div className='placeholder__landing-art' />
+            <button onClick={loginWithTwitter} className='placeholder__button'>
+              <span className='btn__inner'>
+                <span className='icon fas btn-text-one text text--small text--slim'>Login with Twitter</span>
+                <span className='btn-text--twitter' />
+              </span>
+            </button>
+          </div>
         </div>
         <Footer />
       </div>

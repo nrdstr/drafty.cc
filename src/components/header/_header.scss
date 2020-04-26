@@ -10,6 +10,10 @@
         @include size(50px, 50px);
         background: url('/logo/logo-solid.svg') no-repeat center;
         background-size: contain;
+
+        &--login {
+            position: static;
+        }
     }
 
     &__username {
@@ -19,4 +23,5 @@
         margin: 0;
         margin-left: 20px;
     }
+
 }

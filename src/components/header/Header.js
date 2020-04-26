@@ -23,8 +23,8 @@ const Header = () => {
   } else {
     return (
       <header className="app__header app__header--login">
-        <div className='header__logo' />
-        <h1 style={{ margin: "0 0 3px 0" }}>twotter</h1>
+        <div className='header__logo header__logo--login' />
+        <h1 className='text text--large text--bold text--narrow' style={{ margin: "0 0 3px 0" }}>twotter</h1>
       </header>
     )
   }
