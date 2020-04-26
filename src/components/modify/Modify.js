@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react"
 import { useStateValue } from "../../state"
 import firebase from "firebase"
+import ProgressRing from '../shared/progress-ring'
 
 const Modify = () => {
   const [disabled, setDisabled] = useState(true),
@@ -9,8 +10,10 @@ const Modify = () => {
     [original, setOriginal] = useState(''),
     [copyStatus, setCopyStatus] = useState('Copy'),
     [charCount, setCharCount] = useState(0),
+    [charProgress, setCharProgress] = useState(0),
     [{ user, modify, drafts, animations }, dispatch] = useStateValue(),
-    inputRef = useRef(null)
+    inputRef = useRef(null),
+    progressRing = useRef(null)
 
   const handleSubmitNewDraft = e => {
     e.preventDefault()
@@ -56,6 +59,7 @@ const Modify = () => {
     const text = e.target.value
     setText(text)
     setCharCount(text.length)
+    handleProgressRing(text.length)
     if (text.length > 0) {
       setDisabled(false)
     } else {
@@ -63,11 +67,14 @@ const Modify = () => {
     }
   }
 
+  const handleProgressRing = count =>
+    setCharProgress(Math.floor((count / 280) * 100))
+
   const handleCopyText = e => {
     e.preventDefault()
     inputRef.current.select()
     document.execCommand('copy')
-    setCopyStatus(<img className='modify__button--tick' src="/tick.svg" />)
+    setCopyStatus(<img className='modify__button--tick' alt='Text Copied' src="/tick.svg" />)
     e.target.focus()
 
     setTimeout(() => {
@@ -131,6 +138,7 @@ const Modify = () => {
       setOriginal(drafts[modify.edit_draft[1]])
       setDisabled(false)
       setCharCount(drafts[modify.edit_draft[1]].length)
+      handleProgressRing(drafts[modify.edit_draft[1]].length)
     }
   }, [modify.edit_draft, original, drafts])
 
@@ -156,7 +164,7 @@ const Modify = () => {
           />
           <div className='modify__controls'>
             <div className='modify__char-count'>
-              <p className='text text--small text--light text--slim'>{charCount}</p>
+              <ProgressRing goal={280} progress={charProgress} count={charCount} />
             </div>
             <button
               className="modify__button"
@@ -211,7 +219,7 @@ const Modify = () => {
           />
           <div className='modify__controls'>
             <div className='modify__char-count'>
-              <p className='text text--small text--light text--slim'>{charCount}</p>
+              <ProgressRing goal={280} progress={charProgress} count={charCount} />
             </div>
             <button
               className="modify__button"

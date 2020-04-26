@@ -5,8 +5,7 @@
 
   &__container {
     @include flex(row, center, center);
-    min-height: 203px;
-    max-height: 300px;
+    min-height: 100px;
 
     @media (max-width: 768px) {
       min-height: 173px;
@@ -17,7 +16,7 @@
   &__circle-container {
 
     @media (max-width: 768px) {
-      width: 100vw;
+      width: 100%;
       @include flex(row, flex-end, center)
     }
   }
@@ -51,23 +50,24 @@
     @media (max-width: 768px) {
       margin-left: 20px;
     }
-
-    span {
-      font-weight: 600;
-      font-size: 3.2rem;
-      color: $yellow;
-    }
   }
 }
 
 .CircularProgressbar {
-  width: 60% !important;
-  margin-bottom: 30px;
+  width: 50px !important;
+  margin-right: 20px;
+  margin-top: 12px;
+  // margin-bottom: 30px;
 
   @media (max-width: 768px) {
     width: 50% !important;
     margin-bottom: 10px;
   }
+}
+
+.CircularProgressbar .CircularProgressbar-text {
+  font-size: 1.6rem;
+  font-family: $font--main;
 }
 
 .CircularProgressbar .CircularProgressbar-trail {
