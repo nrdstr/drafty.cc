@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from "react"
 import { useStateValue } from "../../state"
 import firebase from "firebase"
-import ProgressRing from '../shared/progress-ring'
+import moment from 'moment'
+import ProgressRing from '../shared/progress-ring/ProgressRing'
 
 const Modify = () => {
   const [disabled, setDisabled] = useState(true),
@@ -12,14 +13,16 @@ const Modify = () => {
     [charCount, setCharCount] = useState(0),
     [charProgress, setCharProgress] = useState(0),
     [{ user, modify, drafts, animations }, dispatch] = useStateValue(),
-    inputRef = useRef(null),
-    progressRing = useRef(null)
+    inputRef = useRef(null)
 
   const handleSubmitNewDraft = e => {
     e.preventDefault()
     const d = drafts
-    console.log(d)
-    d.push(text)
+    const data = {
+      text: text,
+      timestamp: moment().unix()
+    }
+    d.push(data)
     dispatch({
       type: 'drafts',
       payload: d
@@ -75,7 +78,8 @@ const Modify = () => {
     inputRef.current.select()
     document.execCommand('copy')
     setCopyStatus(<img className='modify__button--tick' alt='Text Copied' src="/tick.svg" />)
-    e.target.focus()
+    inputRef.current.focus()
+    inputRef.current.setSelectionRange(charCount, charCount)
 
     setTimeout(() => {
       setCopyStatus('Copy')
@@ -92,7 +96,8 @@ const Modify = () => {
   const handleEditDraftInput = e => {
     const text = e.target.value
     let d = drafts
-    d[modify.edit_draft[1]] = text
+    d[modify.edit_draft[1]].text = text
+    d[modify.edit_draft[1]].timestamp = moment().unix()
     dispatch({
       type: 'drafts',
       payload: drafts
@@ -109,6 +114,7 @@ const Modify = () => {
     })
     setTimeout(() => {
       dispatch({ type: "modify", payload: { ...modify, [operation]: false } })
+      setDisabled(true)
     }, 200)
   }
 
@@ -120,6 +126,7 @@ const Modify = () => {
         type: 'drafts',
         payload: drafts
       })
+      setDisabled(true)
     }
     dispatch({
       type: 'animations',
@@ -136,13 +143,17 @@ const Modify = () => {
   useEffect(() => {
     setCharCount(0)
     handleProgressRing(0)
+    if (modify.new_draft || modify.edit_draft[0]) {
+      inputRef.current.focus()
+      inputRef.current.setSelectionRange(charCount, charCount)
+    }
     if (modify.edit_draft[0]) {
       setOriginal(drafts[modify.edit_draft[1]])
       setDisabled(false)
       setCharCount(drafts[modify.edit_draft[1]].length)
       handleProgressRing(drafts[modify.edit_draft[1]].length)
     }
-  }, [modify.edit_draft, original, drafts])
+  }, [modify.edit_draft, original, drafts, modify.new_draft])
 
   if (modify.new_draft) {
     return (
@@ -199,6 +210,9 @@ const Modify = () => {
       </div>
     )
   } else if (modify.edit_draft[0]) {
+    const currDraft = drafts[modify.edit_draft[1]]
+    const timestamp = moment.unix(currDraft.timestamp).fromNow()
+    // const timestamp = moment().format('hh:mm:ss')
     return (
       <div className={`modify__container modify--open ${animations.overlay}`}>
         <div className="logout__top-bar">
@@ -215,11 +229,15 @@ const Modify = () => {
             placeholder="Have an idea?"
             className="modify__input"
             onChange={handleEditDraftInput}
-            value={drafts[modify.edit_draft[1]]}
+            value={drafts[modify.edit_draft[1]].text}
             ref={inputRef}
-            style={error ? { borderBottom: "2px solid red" } : null}
           />
           <div className='modify__controls'>
+            <div className='modify__timestamp'>
+              <p className='text text--tiny text--light text--slim'>
+                <em>last modified {timestamp}</em>
+              </p>
+            </div>
             <ProgressRing goal={280} progress={charProgress} count={charCount} />
             <button
               className="modify__button"
@@ -245,9 +263,7 @@ const Modify = () => {
           </div>
           {/* Error Section */}
           <p className={error ? "modify__error" : "hidden"}>
-            {modify.add
-              ? "You can't add negative calories, try subtracting instead."
-              : "You can't subtract negatives or more calories than you have eaten."}
+            Something's gone wrong. You may want to try refreshing the page. Copy your text to be safe!
           </p>
         </form>
       </div>

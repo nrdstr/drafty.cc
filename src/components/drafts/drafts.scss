@@ -23,12 +23,12 @@ $blur: 50px;
   &__add-mobile {
     @include flex(row, center, center);
     display: none;
-    margin: 0 20px 20px 0;
+    margin: 0 30px 30px 0;
     position: absolute;
     bottom: 0;
     right: 0;
     background-color: $blue--vibrant;
-    @include size(101px, 101px);
+    @include size(77px, 77px);
     border-radius: 50%;
 
     @media (max-width: 768px) {

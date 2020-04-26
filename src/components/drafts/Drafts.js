@@ -19,23 +19,13 @@ const Drafts = () => {
         try {
           const data = snapshot.val()
           if (data) {
-            console.log('detected DB object', data)
-            // console.log(user)
-            // setDrafts(data.drafts)
+            // console.log('detected DB object', data)
             if (data.drafts && data.drafts.length > 0) {
               dispatch({
                 type: 'drafts',
                 payload: data.drafts
               })
             }
-
-            // dispatch({
-            //   type: "user",
-            //   payload: {
-            //     ...user,
-            //     data
-            //   }
-            // })
             dispatch({
               type: 'toggleLoader',
               payload: false
@@ -80,7 +70,6 @@ const Drafts = () => {
   const handleDeleteDraft = index => {
     let d = drafts
     d.splice(index, 1)
-    console.log(index, d)
     dispatch({
       type: 'drafts',
       payload: d
@@ -114,15 +103,14 @@ const Drafts = () => {
   }, [])
 
   if (user.isAuthenticated) {
-    if (drafts && drafts.length > 0) {
+    if (drafts && drafts.length) {
       const d = drafts
-
       return (
         <div className='drafts__container animate--fade-in'>
           <div className='drafts'>
             {d.map((draft, i) => {
-              return <div key={draft.slice(0, 10)} className='draft'>
-                <p onClick={() => handleEditDraft(i)} className='draft__text'>{draft}</p>
+              return <div key={draft.text.slice(0, 10)} className='draft'>
+                <p onClick={() => handleEditDraft(i)} className='draft__text'>{draft.text}</p>
                 <button className='draft__delete' onClick={() => handleDeleteDraft(i)}>
                   <img src='/trash.svg' alt='Delete this draft' />
                 </button>

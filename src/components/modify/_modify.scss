@@ -117,6 +117,16 @@
     }
   }
 
+  &__timestamp {
+    flex: 1;
+    text-align: left;
+
+    p {
+      margin: 0;
+      padding: 0;
+    }
+  }
+
   &__button-submit {
       width: 50%;
       background: none;

@@ -254,11 +254,15 @@ h1 {
   }
 
   &--light {
-      color: $blue--light;
+      color: $blue--light !important;
   }
 
   &--blue {
       color: $blue;
+  }
+
+  &--tiny {
+    font-size: 0.78rem !important;
   }
 
   &--small {
