@@ -7,6 +7,7 @@ const Modify = () => {
     [error, setError] = useState(false),
     [text, setText] = useState(''),
     [original, setOriginal] = useState(''),
+    [copyStatus, setCopyStatus] = useState('Copy'),
     [{ user, modify, drafts, animations }, dispatch] = useStateValue(),
     inputRef = useRef(null)
 
@@ -50,7 +51,27 @@ const Modify = () => {
     }
   }
 
-  const handleTextInput = e => setText(e.target.value)
+  const handleTextInput = e => {
+    const text = e.target.value
+    setText(text)
+    if (text.length > 0) {
+      setDisabled(false)
+    } else {
+      setDisabled(true)
+    }
+  }
+
+  const handleCopyText = e => {
+    e.preventDefault()
+    inputRef.current.select()
+    document.execCommand('copy')
+    setCopyStatus('Copied √')
+    e.target.focus()
+
+    setTimeout(() => {
+      setCopyStatus('Copy')
+    }, 2000)
+  }
 
   const handleEditDraftInput = e => {
     const text = e.target.value
@@ -122,18 +143,33 @@ const Modify = () => {
             ref={inputRef}
             style={error ? { borderBottom: "2px solid red" } : null}
           />
-          <button
-            className="modify__button-submit"
-            onClick={handleSubmitNewDraft}
-          // disabled={disabled || error}
-          >
-            Save
-          </button>
+          <div className='modify__controls'>
+            <button
+              className="modify__button"
+              onClick={handleCopyText}
+              disabled={disabled || error}
+            >
+              {copyStatus}
+            </button>
+            <button
+              className="modify__button"
+              onClick={handleSubmitNewDraft}
+              disabled={disabled || error}
+            >
+              Tweet
+            </button>
+            <button
+              className="modify__button modify__button--save"
+              onClick={handleSubmitNewDraft}
+              disabled={disabled || error}
+            >
+              Save
+            </button>
+          </div>
+
           {/* Error Section */}
           <p className={error ? "modify__error" : "hidden"}>
-            {modify.add
-              ? "You can't add negative calories, try subtracting instead."
-              : "You can't subtract negatives or more calories than you have eaten."}
+            Something's gone wrong. You may want to try refreshing the page. Copy your text to be safe!
           </p>
         </form>
       </div>
