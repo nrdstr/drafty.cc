@@ -96,6 +96,10 @@
       background-color: lighten($blue, 5%);
     }
 
+    &--tick {
+      @include size(20px, 20px);
+    }
+
     &:first-child {
       margin-left: 0;
     }

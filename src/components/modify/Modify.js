@@ -8,6 +8,7 @@ const Modify = () => {
     [text, setText] = useState(''),
     [original, setOriginal] = useState(''),
     [copyStatus, setCopyStatus] = useState('Copy'),
+    [charCount, setCharCount] = useState(0),
     [{ user, modify, drafts, animations }, dispatch] = useStateValue(),
     inputRef = useRef(null)
 
@@ -54,6 +55,7 @@ const Modify = () => {
   const handleTextInput = e => {
     const text = e.target.value
     setText(text)
+    setCharCount(text.length)
     if (text.length > 0) {
       setDisabled(false)
     } else {
@@ -65,12 +67,19 @@ const Modify = () => {
     e.preventDefault()
     inputRef.current.select()
     document.execCommand('copy')
-    setCopyStatus('Copied √')
+    setCopyStatus(<img className='modify__button--tick' src="/tick.svg" />)
     e.target.focus()
 
     setTimeout(() => {
       setCopyStatus('Copy')
-    }, 2000)
+    }, 1500)
+  }
+
+  const handleComposeNewTweet = e => {
+    e.preventDefault()
+    const encodedText = encodeURI(text)
+    const url = `https://twitter.com/intent/tweet?text=${encodedText}`
+    window.open(url, '_blank')
   }
 
   const handleEditDraftInput = e => {
@@ -120,6 +129,8 @@ const Modify = () => {
   useEffect(() => {
     if (modify.edit_draft[0]) {
       setOriginal(drafts[modify.edit_draft[1]])
+      setDisabled(false)
+      setCharCount(drafts[modify.edit_draft[1]].length)
     }
   }, [modify.edit_draft, original, drafts])
 
@@ -137,13 +148,16 @@ const Modify = () => {
         <form>
           <textarea
             type="text"
-            placeholder="Have an idea?"
+            placeholder="What's your idea?"
             className="modify__input"
             onChange={handleTextInput}
             ref={inputRef}
             style={error ? { borderBottom: "2px solid red" } : null}
           />
           <div className='modify__controls'>
+            <div className='modify__char-count'>
+              <p className='text text--small text--light text--slim'>{charCount}</p>
+            </div>
             <button
               className="modify__button"
               onClick={handleCopyText}
@@ -153,7 +167,7 @@ const Modify = () => {
             </button>
             <button
               className="modify__button"
-              onClick={handleSubmitNewDraft}
+              onClick={handleComposeNewTweet}
               disabled={disabled || error}
             >
               Tweet
@@ -175,7 +189,6 @@ const Modify = () => {
       </div>
     )
   } else if (modify.edit_draft[0]) {
-    const draftURI = encodeURI(drafts[modify.edit_draft[1]])
     return (
       <div className={`modify__container modify--open ${animations.overlay}`}>
         <div className="logout__top-bar">
@@ -196,17 +209,32 @@ const Modify = () => {
             ref={inputRef}
             style={error ? { borderBottom: "2px solid red" } : null}
           />
-          <button
-            className="modify__button-submit"
-            onClick={handleSubmitEditDraft}
-          // disabled={disabled || error}
-          >
-
-            Save
-          </button>
-          <a href={`https://twitter.com/intent/tweet?text=${draftURI}`} target='_blank' className='modify__button-submit'>
-            TWEET
-            </a>
+          <div className='modify__controls'>
+            <div className='modify__char-count'>
+              <p className='text text--small text--light text--slim'>{charCount}</p>
+            </div>
+            <button
+              className="modify__button"
+              onClick={handleCopyText}
+              disabled={disabled || error}
+            >
+              {copyStatus}
+            </button>
+            <button
+              className="modify__button"
+              onClick={handleComposeNewTweet}
+              disabled={disabled || error}
+            >
+              Tweet
+            </button>
+            <button
+              className="modify__button modify__button--save"
+              onClick={handleSubmitEditDraft}
+              disabled={disabled || error}
+            >
+              Save
+            </button>
+          </div>
           {/* Error Section */}
           <p className={error ? "modify__error" : "hidden"}>
             {modify.add
