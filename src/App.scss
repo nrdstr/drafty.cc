@@ -78,7 +78,7 @@ button {
     width: 100%;
     max-width: 1200px;
     box-sizing: border-box;
-    padding: 10px 20px 10px 20px;
+    padding: 15px 20px 10px 20px;
     z-index: 2000;
 
     @media (max-width: 768px) {
@@ -342,6 +342,11 @@ h1 {
           transform: scale(1);
           opacity: 1;
         }
+
+        .btn-text--logout {
+          transform: scale(1);
+          opacity: 1;
+        }
       }
     }
   }
@@ -358,6 +363,16 @@ h1 {
       border-radius: $border-radius;
       transition: $transition--standard;
       mix-blend-mode: screen;
+
+      &-split {
+        @include flex(row, space-between, center);
+        @include size(100%, 100%);
+
+        span {
+          @include flex(row, center, center);
+          @include size(50%, 100%);
+        }
+      }
     }
   }
 
@@ -385,6 +400,15 @@ h1 {
 
   .btn-text--twitter {
     background: url('/twitter.svg') no-repeat center;
+    background-size: contain;
+    @include size(25px, 25px);
+    transform: scale(0.3);
+    transition: $transition--standard;
+    opacity: 0;
+  }
+
+  .btn-text--logout {
+    background: url('/logout.svg') no-repeat center;
     background-size: contain;
     @include size(25px, 25px);
     transform: scale(0.3);

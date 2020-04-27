@@ -91,6 +91,8 @@ const Modify = () => {
     const encodedText = encodeURI(text)
     const url = `https://twitter.com/intent/tweet?text=${encodedText}`
     window.open(url, '_blank')
+    inputRef.current.focus()
+    inputRef.current.setSelectionRange(charCount, charCount)
   }
 
   const handleEditDraftInput = e => {
@@ -121,7 +123,7 @@ const Modify = () => {
   const closeEditModal = cancel => {
     let d = drafts
     if (cancel) {
-      d[modify.edit_draft[1]] = original
+      d[modify.edit_draft[1]].text = original
       dispatch({
         type: 'drafts',
         payload: drafts
@@ -146,12 +148,12 @@ const Modify = () => {
     if (modify.new_draft || modify.edit_draft[0]) {
       inputRef.current.focus()
       inputRef.current.setSelectionRange(charCount, charCount)
-    }
-    if (modify.edit_draft[0]) {
-      setOriginal(drafts[modify.edit_draft[1]])
-      setDisabled(false)
-      setCharCount(drafts[modify.edit_draft[1]].length)
-      handleProgressRing(drafts[modify.edit_draft[1]].length)
+      if (modify.edit_draft[0]) {
+        setOriginal(drafts[modify.edit_draft[1]].text)
+        setDisabled(false)
+        setCharCount(drafts[modify.edit_draft[1]].text.length)
+        handleProgressRing(drafts[modify.edit_draft[1]].text.length)
+      }
     }
   }, [modify.edit_draft, original, drafts, modify.new_draft])
 
@@ -171,6 +173,7 @@ const Modify = () => {
             type="text"
             placeholder="What's your idea?"
             className="modify__input"
+            maxLength={10000}
             onChange={handleTextInput}
             ref={inputRef}
             style={error ? { borderBottom: "2px solid red" } : null}
@@ -228,6 +231,7 @@ const Modify = () => {
             type="text"
             placeholder="Have an idea?"
             className="modify__input"
+            maxLength={10000}
             onChange={handleEditDraftInput}
             value={drafts[modify.edit_draft[1]].text}
             ref={inputRef}

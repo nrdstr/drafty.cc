@@ -46,11 +46,19 @@ const LogOut = props => {
       </div>
       <div className='logout'>
         <p className='text text--medium text--slim'>Are you sure?</p>
-        <button className='logout__button'
+        <div className='placeholder'>
+          <button onClick={handleLogOut} className='placeholder__button'>
+            <span className='btn__inner'>
+              <span className='icon fas btn-text-one text text--small text--slim'>Log Out</span>
+              <span className='icon btn-text--logout' />
+            </span>
+          </button>
+        </div>
+        {/* <button className='logout__button'
           onClick={handleLogOut}
           title='Log Out'>
           Log Out
-        </button>
+        </button> */}
       </div>
       <Footer />
     </div>

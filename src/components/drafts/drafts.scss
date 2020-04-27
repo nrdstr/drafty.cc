@@ -15,9 +15,8 @@ $blur: 50px;
   min-width: 600px;
   overflow-y: auto;
 
-  @media (max-width: 767px) {
-    min-width: 0;
-    border: 0;
+  @media (max-width: 600px) {
+    min-width: 100%;
   }
 
   &__add-mobile {
@@ -50,6 +49,10 @@ $blur: 50px;
 
     @media (max-width: 600px) {
       border: 0;
+      width: 100%;
+    }
+
+    @media (max-width: 768px) {
     }
   }
 
