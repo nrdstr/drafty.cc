@@ -117,7 +117,7 @@ const Drafts = () => {
           <div className='drafts animate--fade-in'>
             {d.map((draft, i) => renderDraft(draft, i))}
             <div style={{ marginTop: 10 }} className='placeholder'>
-              <button onClick={toggleModify} className='placeholder__button'>
+              <button style={{ marginTop: 20 }} onClick={toggleModify} className='placeholder__button'>
                 <span className='btn__inner'>
                   <span className='icon fas btn-text-one text--slim'>Add new draft</span>
                   <span className='icon fas btn-text-two' />
