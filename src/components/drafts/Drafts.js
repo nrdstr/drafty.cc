@@ -99,8 +99,8 @@ const Drafts = () => {
   }, [])
 
   const renderDraft = (draft, i) => {
-    return <div key={draft.text.slice(0, 10)} className='draft'>
-      <p onClick={() => handleEditDraft(i)} className='draft__text'>
+    return <div key={draft.text.slice(0, 10)} onClick={() => handleEditDraft(i)} className='draft'>
+      <p className='draft__text'>
         {draft.text}
       </p>
       <button className='draft__delete' onClick={() => handleDeleteDraft(i)}>
