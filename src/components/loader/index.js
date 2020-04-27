@@ -1,13 +1,39 @@
-import React from "react"
+import React, { useEffect, useRef } from "react"
 import { useStateValue } from "../../state"
 
 const Loader = () => {
-  const [{ isLoading }] = useStateValue()
+  const [{ isLoading, animations }] = useStateValue()
+  const container = useRef(null)
+
+  const endLoad = animations.loader_out
+
+  const handleLoaderAnimation = () => {
+    // overlay.current.style.opacity = 1
+  }
+
+  useEffect(() => {
+    if (animations.loader_out) {
+      handleLoaderAnimation()
+    }
+  }, [animations.loader_out])
   if (isLoading) {
     return (
-      <div className="loader__container">
-        <div className='header__logo' />
-        {/* <h1>simplr</h1> */}
+      <div ref={container} className="loader__container">
+        <div className={`loader__body ${endLoad ? 'animate--fade-out' : ''}`}>
+          <span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+          <div className={`loader__logo ${endLoad ? 'animate--fade-out' : ''}`} />
+        </div>
+        <div className={`longfazers ${endLoad ? 'animate--fade-out' : ''}`}>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </div>
     )
   } else {

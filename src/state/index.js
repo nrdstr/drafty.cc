@@ -16,7 +16,8 @@ export const initialState = {
     edit_draft: [false, null]
   },
   animations: {
-    overlay: 'animate--fade-in'
+    overlay: 'animate--fade-in',
+    loader_out: false
   },
   toggleLogout: false,
   isLoading: false

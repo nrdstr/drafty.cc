@@ -21,3 +21,8 @@
     animation-fill-mode: forwards;
   }
 }
+
+@keyframes fade-out-loader {
+  from { opacity: 0.5; }
+  to { opacity: 1; }
+}

@@ -37,10 +37,6 @@ const Drafts = () => {
             firebase.database()
               .ref(`/users/${user.uid}/`)
               .set(JSON.parse(JSON.stringify(userData)))
-            dispatch({
-              type: 'toggleLoader',
-              payload: false
-            })
           }
         }
         catch (e) {
@@ -102,21 +98,34 @@ const Drafts = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  const renderDraft = (draft, i) => {
+    return <div key={draft.text.slice(0, 10)} className='draft'>
+      <p onClick={() => handleEditDraft(i)} className='draft__text'>
+        {draft.text}
+      </p>
+      <button className='draft__delete' onClick={() => handleDeleteDraft(i)}>
+        <img src='/trash.svg' alt='Delete this draft' />
+      </button>
+    </div>
+  }
+
   if (user.isAuthenticated) {
     if (drafts && drafts.length) {
       const d = drafts
       return (
         <div className='drafts__container animate--fade-in'>
-          <div className='drafts'>
-            {d.map((draft, i) => {
-              return <div key={draft.text.slice(0, 10)} className='draft'>
-                <p onClick={() => handleEditDraft(i)} className='draft__text'>{draft.text}</p>
-                <button className='draft__delete' onClick={() => handleDeleteDraft(i)}>
-                  <img src='/trash.svg' alt='Delete this draft' />
-                </button>
-              </div>
-            })}
-            <p className='text text--medium text--light text--slim'>the end</p>
+          <div className='drafts animate--fade-in'>
+            {d.map((draft, i) => renderDraft(draft, i))}
+            <div style={{ marginTop: 10 }} className='placeholder'>
+              <button onClick={toggleModify} className='placeholder__button'>
+                <span className='btn__inner'>
+                  <span className='icon fas btn-text-one text--slim'>Add new draft</span>
+                  <span className='icon fas btn-text-two' />
+                </span>
+              </button>
+            </div>
+
+            {/* <p className='text text--medium text--light text--slim'>the end</p> */}
           </div>
           <button className='drafts__add-mobile' onClick={toggleModify}>
             <img src='/add.svg' alt='Create new draft' />

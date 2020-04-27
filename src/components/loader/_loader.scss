@@ -14,9 +14,116 @@
     flex: 1;
     width: 100vw;
     height: 100%;
+    opacity: 1;
     z-index: 9999;
-    background-color: $grey--background;
+    background-color: $dark-blue;
     color: white;
+  }
+
+  &__logo {
+    position: relative;
+    @include size(75px, 75px);
+    background: url('/logo/logo-solid.svg') no-repeat center;
+    background-size: contain;
+    animation: speeder .4s linear infinite;
+    z-index: 1000;
+  }
+
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    @include size(100vw, 100%);
+    background-color: $dark-blue;
+    z-index: 2;
+    transition: all 0.2s ease-out;
+  }
+
+  &__body {
+    position: relative;
+    @include flex(column, center, center);
+    @include size(100%, 100%);
+    animation: speeder .4s linear infinite;
+    z-index: 3;
+
+    > span {
+      position: relative;
+      height: 0;
+      width: 35px;
+      top: 30px;
+      right: 35px;
+      background: #fff;
+      border-radius: 2px 10px 1px 0;
+    }
+  }
+
+  &__body > span > span:nth-child(1),
+  &__body > span > span:nth-child(2),
+  &__body > span > span:nth-child(3),
+  &__body > span > span:nth-child(4) {
+    width: 30px;
+    height: 1px;
+    background: #fff;
+    position: absolute;
+    top: 13px;
+    animation: fazer1 .2s linear infinite;
+  }
+
+  &__body > span > span:nth-child(2) {
+    top: 8px;
+    animation: fazer2 .4s linear infinite;
+  }
+
+  &__body > span > span:nth-child(3) {
+    top: 4px;
+    animation: fazer3 .4s linear infinite;
+    animation-delay: -1s;
+  }
+
+  &__body > span > span:nth-child(4) {
+    top: 4px;
+    animation: fazer4 1s linear infinite;
+    animation-delay: -1s;
+  }
+}
+
+@keyframes fazer1 {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: -80px;
+    opacity: 0;
+  }
+}
+
+@keyframes fazer2 {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: -100px;
+    opacity: 0;
+  }
+}
+
+@keyframes fazer3 {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: -50px;
+    opacity: 0;
+  }
+}
+
+@keyframes fazer4 {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: -150px;
+    opacity: 0;
   }
 }
 
@@ -42,4 +149,146 @@
 @keyframes rotate {
   from { transform: rotate(0); }
   to { transform: rotate(360deg); }
+}
+
+@keyframes speeder {
+  0% {
+    transform: translate(2px, 1px) rotate(0deg);
+  }
+  10% {
+    transform: translate(-1px, -3px) rotate(-1deg);
+  }
+  20% {
+    transform: translate(-2px, 0px) rotate(1deg);
+  }
+  30% {
+    transform: translate(1px, 2px) rotate(0deg);
+  }
+  40% {
+    transform: translate(1px, -1px) rotate(1deg);
+  }
+  50% {
+    transform: translate(-1px, 3px) rotate(-1deg);
+  }
+  60% {
+    transform: translate(-1px, 1px) rotate(0deg);
+  }
+  70% {
+    transform: translate(3px, 1px) rotate(-1deg);
+  }
+  80% {
+    transform: translate(-2px, -1px) rotate(1deg);
+  }
+  90% {
+    transform: translate(2px, 1px) rotate(0deg);
+  }
+  100% {
+    transform: translate(1px, -2px) rotate(-1deg);
+  }
+}
+
+
+
+.longfazers {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  transition: all .2 ease-out;
+
+  span {
+    position: absolute;
+    height: 2px;
+    width: 20%;
+    background: #fff;
+
+    &:nth-child(1) {
+      top: 20%;
+      animation: lf .6s linear infinite;
+      animation-delay: -5s;
+    }
+
+    &:nth-child(2) {
+      top: 40%;
+      animation: lf2 .8s linear infinite;
+      animation-delay: -1s;
+    }
+
+    &:nth-child(3) {
+      top: 60%;
+      animation: lf3 .6s linear infinite;
+    }
+
+    &:nth-child(4) {
+      top: 80%;
+      animation: lf4 .5s linear infinite;
+      animation-delay: -3s;
+    }
+  }
+}
+
+@keyframes lf {
+  0% {
+    left: 200%;
+  }
+  100% {
+    left: -200%;
+    opacity: 0;
+  }
+}
+@keyframes lf2 {
+  0% {
+    left: 200%;
+  }
+  100% {
+    left: -200%;
+    opacity: 0;
+  }
+}
+@keyframes lf3 {
+  0% {
+    left: 200%;
+  }
+  100% {
+    left: -100%;
+    opacity: 0;
+  }
+}
+@keyframes lf4 {
+  0% {
+    left: 200%;
+  }
+  100% {
+    left: -100%;
+    opacity: 0;
+  }
+}
+
+
+.stars, .twinkling, .clouds {
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  width:100%;
+  height:100%;
+  display:block;
+  z-index: 0;
+}
+
+.stars {
+  background:#000 url(http://www.script-tutorials.com/demos/360/images/stars.png) repeat top center;
+  z-index:0;
+}
+
+.twinkling{
+  background:transparent url(http://www.script-tutorials.com/demos/360/images/twinkling.png) repeat top center;
+  z-index:1;
+
+  -moz-animation:move-twink-back 200s linear infinite;
+  -ms-animation:move-twink-back 200s linear infinite;
+  -o-animation:move-twink-back 200s linear infinite;
+  -webkit-animation:move-twink-back 200s linear infinite;
+  animation:move-twink-back 200s linear infinite;
 }

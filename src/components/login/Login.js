@@ -5,7 +5,7 @@ import Footer from "../footer/Footer"
 import { twitter, auth } from "../../utils/firebase"
 
 const Login = () => {
-  const [{ user }, dispatch] = useStateValue()
+  const [{ user, animations }, dispatch] = useStateValue()
 
   const fetchTwitterUserProfile = async id => {
     const url = `https://api.stellr.digital/twitter?id=${id}`
@@ -49,10 +49,21 @@ const Login = () => {
 
           fetchTwitterUserProfile(userInfo.providerData[0].uid)
         }
-        dispatch({
-          type: "toggleLoader",
-          payload: false
-        })
+        setTimeout(() => {
+          dispatch({
+            type: 'animations',
+            payload: {
+              ...animations,
+              loader_out: true
+            }
+          })
+          setTimeout(() => {
+            dispatch({
+              type: 'toggleLoader',
+              payload: false
+            })
+          }, 200)
+        }, 1000)
       } catch (e) {
         console.error("Error fetching previous auth: ", e)
       }
@@ -80,10 +91,21 @@ const Login = () => {
         }
       })
 
-      dispatch({
-        type: "toggleLoader",
-        payload: false
-      })
+      setTimeout(() => {
+        dispatch({
+          type: 'animations',
+          payload: {
+            ...animations,
+            loader_out: true
+          }
+        })
+        setTimeout(() => {
+          dispatch({
+            type: 'toggleLoader',
+            payload: false
+          })
+        }, 200)
+      }, 1000)
 
     }).catch(e => console.error(e))
   }

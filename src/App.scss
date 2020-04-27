@@ -308,7 +308,7 @@ h1 {
 
   &__button {
     @include flex(row, center, center);
-    @include size($btn-width, $btn-width / 2);
+    @include size($btn-width, $btn-width / 2.5);
     margin-bottom: 10px;
     position: relative;
     border: 0;
@@ -364,7 +364,7 @@ h1 {
   .icon {
     position: absolute;
     font-family: $font--main;
-    font-size: 1rem;
+    font-size: 0.95rem;
     color: white;
   }
 
