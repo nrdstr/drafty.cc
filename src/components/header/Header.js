@@ -9,7 +9,7 @@ const Header = () => {
 
   if (user.isAuthenticated) {
     return (
-      <header className={`app__header ${popover.toggle && 'blur'}`}>
+      <header className={`app__header ${popover.toggle ? 'blur' : ''}`}>
         <div className='header__user'>
           <div className='app__header-avatar'>
             <img alt='Avatar' src={user.avatar} />

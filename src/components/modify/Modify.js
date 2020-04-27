@@ -150,6 +150,7 @@ const Modify = () => {
       inputRef.current.setSelectionRange(charCount, charCount)
       if (modify.edit_draft[0]) {
         setOriginal(drafts[modify.edit_draft[1]].text)
+        setText(drafts[modify.edit_draft[1]].text)
         setDisabled(false)
         setCharCount(drafts[modify.edit_draft[1]].text.length)
         handleProgressRing(drafts[modify.edit_draft[1]].text.length)

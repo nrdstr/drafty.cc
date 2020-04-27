@@ -114,11 +114,11 @@ const Drafts = () => {
     if (drafts && drafts.length) {
       const d = drafts
       return (
-        <div className={`drafts__container animate--fade-in ${popover.toggle && 'blur'}`}>
+        <div className={`drafts__container animate--fade-in ${popover.toggle ? 'blur' : ''}`}>
           <div className='drafts animate--fade-in'>
             {d.map((draft, i) => renderDraft(draft, i))}
-            <div style={{ marginTop: 10 }} className='placeholder'>
-              <button style={{ marginTop: 20 }} onClick={toggleModify} className='placeholder__button'>
+            <div style={{ paddingTop: 10, paddingBottom: 10 }} className='placeholder'>
+              <button style={{ marginTop: 20, marginBottom: 20 }} onClick={toggleModify} className='placeholder__button'>
                 <span className='btn__inner'>
                   <span className='icon fas btn-text-one text--slim'>Add new draft</span>
                   <span className='icon fas btn-text-two' />
