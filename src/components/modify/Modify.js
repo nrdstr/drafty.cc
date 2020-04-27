@@ -128,7 +128,6 @@ const Modify = () => {
         type: 'drafts',
         payload: drafts
       })
-      setDisabled(true)
     }
     dispatch({
       type: 'animations',
@@ -137,6 +136,7 @@ const Modify = () => {
         overlay: 'animate--fade-out'
       }
     })
+    setDisabled(true)
     setTimeout(() => {
       dispatch({ type: 'modify', payload: { ...modify, edit_draft: [false, null] } })
     }, 200)
