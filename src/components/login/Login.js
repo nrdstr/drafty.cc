@@ -130,7 +130,7 @@ const Login = () => {
 
           <div style={{ marginTop: 30 }} className='placeholder'>
             {/* <div className='placeholder__landing-art' /> */}
-            <button onClick={loginWithTwitter} className='placeholder__button'>
+            <button onClick={loginWithTwitter} className='placeholder__button placeholder__button--landing'>
               <span className='btn__inner'>
                 <span className='icon fas btn-text-one text text--small text--slim'>Login with Twitter</span>
                 <span className='btn-text--twitter' />

@@ -47,8 +47,8 @@ const Popover = () => {
                 <div className='popover__inner'>
                     <p className='text text--medium text--bold'>Are you sure?</p>
                     <div className='popover__row'>
-                        <button onClick={handleDeleteDraft} className='popover__btn popover__btn--confirm'>Delete</button>
                         <button onClick={closePopover} className='popover__btn'>Cancel</button>
+                        <button onClick={handleDeleteDraft} className='popover__btn popover__btn--confirm'>Delete</button>
                     </div>
                 </div>
             </div>
