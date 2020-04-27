@@ -80,6 +80,7 @@ button {
     max-width: 1200px;
     box-sizing: border-box;
     padding: 15px 20px 10px 20px;
+    transition: filter 0.2s ease-in-out;
     z-index: 2000;
 
     @media (max-width: 768px) {

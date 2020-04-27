@@ -98,10 +98,12 @@ const Drafts = () => {
   }, [])
 
   const renderDraft = (draft, i) => {
-    return <div key={draft.text.slice(0, 10)} onClick={() => handleEditDraft(i)} className='draft'>
-      <p className='draft__text'>
-        {draft.text}
-      </p>
+    return <div key={draft.text.slice(0, 10)} className='draft'>
+      <div onClick={() => handleEditDraft(i)} className='draft__clickable-wrapper'>
+        <p className='draft__text'>
+          {draft.text}
+        </p>
+      </div>
       <button className='draft__delete' onClick={() => handleDeleteDraft(i)}>
         <img src='/trash.svg' alt='Delete this draft' />
       </button>

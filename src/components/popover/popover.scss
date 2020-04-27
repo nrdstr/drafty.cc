@@ -3,7 +3,7 @@
     top: 0;
     @include flex(column, center, center);
     @include size(100vw, 100%);
-    background-color: transparent;
+    background-color: transparentize(#222, 0.9);
 
     &--active {
         opacity: 1;

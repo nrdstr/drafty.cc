@@ -46,6 +46,7 @@ $blur: 50px;
     height: 100%;
     border-left: 1px solid lighten($dark-blue, 10%);
     border-right: 1px solid lighten($dark-blue, 10%);
+    transition: filter 0.2s ease-in-out;
 
     // @media (max-width: 600px) {
     //   border: 0;
@@ -116,6 +117,11 @@ $blur: 50px;
     .draft__delete {
       opacity: 1;
     }
+  }
+
+  &__clickable-wrapper {
+    @include size(100%, 100%);
+    @include flex(row, flex-start, center);
   }
 
   &__text {

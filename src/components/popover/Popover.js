@@ -4,6 +4,7 @@ import firebase from "../../utils/firebase"
 
 const Popover = () => {
     const [{ popover, drafts, user }, dispatch] = useStateValue()
+    const [animation, setAnimation] = useState('animate--fade-in')
 
     const handleDeleteDraft = () => {
         let d = drafts
@@ -27,6 +28,7 @@ const Popover = () => {
     }
 
     const closePopover = () => {
+        setAnimation('animate--fade-out')
         dispatch({
             type: 'popover',
             payload: {
@@ -34,16 +36,19 @@ const Popover = () => {
                 index: null
             }
         })
+        setTimeout(() => {
+            setAnimation('animate--fade-in')
+        }, 200)
     }
 
     if (popover.toggle) {
         return (
-            <div className={`popover animate--fade-in`}>
+            <div className={`popover ${animation}`}>
                 <div className='popover__inner'>
                     <p className='text text--medium text--bold'>Are you sure?</p>
                     <div className='popover__row'>
+                        <button onClick={handleDeleteDraft} className='popover__btn popover__btn--confirm'>Delete</button>
                         <button onClick={closePopover} className='popover__btn'>Cancel</button>
-                        <button onClick={handleDeleteDraft} className='popover__btn popover__btn--confirm'>Yes</button>
                     </div>
                 </div>
             </div>
