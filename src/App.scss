@@ -9,6 +9,7 @@
 @import './components/login/login';
 @import './components/logout/logout';
 @import './components/loader/loader';
+@import './components/popover/popover';
 @import './components/footer/footer';
 @import './components/goal-bar/goal-bar';
 @import './components/shared/progress-ring/progress-ring';
@@ -407,4 +408,10 @@ h1 {
   }
 
 
+}
+
+.blur {
+  filter: blur(10px);
+  user-select: none;
+  overflow: hidden;
 }

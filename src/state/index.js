@@ -19,6 +19,10 @@ export const initialState = {
     overlay: 'animate--fade-in',
     loader_out: false
   },
+  popover: {
+    toggle: false,
+    index: null
+  },
   toggleLogout: false,
   isLoading: false
 }

@@ -3,6 +3,7 @@ import { StateProvider, initialState } from "./state"
 import { rootReducer } from "./reducers"
 import Loader from "./components/loader"
 import Login from "./components/login/Login"
+import Popover from './components/popover/Popover'
 import Div100vh from "react-div-100vh"
 import Home from "./components/home/Home"
 import "./App.scss"
@@ -17,6 +18,7 @@ function App() {
             <Login />
             <Home />
           </div>
+          <Popover />
         </main>
       </Div100vh>
     </StateProvider>

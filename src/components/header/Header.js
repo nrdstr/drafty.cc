@@ -4,12 +4,12 @@ import { useStateValue } from "../../state"
 import Controls from '../controls/Controls'
 
 const Header = () => {
-  const [{ user }, dispatch] = useStateValue(),
+  const [{ user, popover }, dispatch] = useStateValue(),
     date = moment().format("dddd, MMMM DD YYYY")
 
   if (user.isAuthenticated) {
     return (
-      <header className="app__header">
+      <header className={`app__header ${popover.toggle && 'blur'}`}>
         <div className='header__user'>
           <div className='app__header-avatar'>
             <img alt='Avatar' src={user.avatar} />

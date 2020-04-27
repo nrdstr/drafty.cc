@@ -3,7 +3,7 @@ import { useStateValue } from "../../state"
 import firebase from "../../utils/firebase"
 
 const Drafts = () => {
-  const [{ user, modify, drafts, animations }, dispatch] = useStateValue()
+  const [{ user, modify, drafts, animations, popover }, dispatch] = useStateValue()
 
   // const [drafts, setDrafts] = useState([])
 
@@ -64,22 +64,21 @@ const Drafts = () => {
   }
 
   const handleDeleteDraft = index => {
-    let d = drafts
-    d.splice(index, 1)
     dispatch({
-      type: 'drafts',
-      payload: d
+      type: 'modify',
+      payload: {
+        ...modify,
+        edit_draft: [false, index]
+      }
+    })
+    dispatch({
+      type: 'popover',
+      payload: {
+        toggle: true,
+        index: index
+      }
     })
 
-    try {
-      firebase
-        .database()
-        .ref(`/users/${user.uid}`)
-        .child("drafts")
-        .set(d)
-    } catch (e) {
-      console.error(e)
-    }
   }
 
   const toggleModify = () => {
@@ -113,7 +112,7 @@ const Drafts = () => {
     if (drafts && drafts.length) {
       const d = drafts
       return (
-        <div className='drafts__container animate--fade-in'>
+        <div className={`drafts__container animate--fade-in ${popover.toggle && 'blur'}`}>
           <div className='drafts animate--fade-in'>
             {d.map((draft, i) => renderDraft(draft, i))}
             <div style={{ marginTop: 10 }} className='placeholder'>

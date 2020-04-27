@@ -1,0 +1,40 @@
+.popover {
+    position: absolute;
+    top: 0;
+    @include flex(column, center, center);
+    @include size(100vw, 100%);
+    background-color: transparent;
+
+    &--active {
+        opacity: 1;
+    }
+
+    &__inner {
+        @include flex(column, center, center);
+        @include size(200px, 200px);
+    }
+
+    &__btn {
+        background-color: $red;
+        padding: 20px;
+        min-width: 90px;
+        min-height: 59px;
+        margin: 5px;
+        border-radius: 29.5px;
+        transition: $transition--standard;
+
+        &:focus,
+        &:hover {
+            background-color: darken($red, 7%);
+        }
+
+        &--confirm {
+            background-color: lighten($blue, 10%);
+
+            &:focus,
+            &:hover {
+                background-color: lighten($blue, 7%);
+            }
+        }
+    }
+}
