@@ -25,6 +25,11 @@ export const rootReducer = (state, action) => {
         ...state,
         isLoading: action.payload
       }
+    case "settings":
+      return {
+        ...state,
+        settings: action.payload
+      }
     case "popover":
       return {
         ...state,

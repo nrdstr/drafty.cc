@@ -4,6 +4,7 @@
     @include flex(column, center, center);
     @include size(100vw, 100%);
     background-color: transparentize(#222, 0.9);
+    z-index: 3000;
 
     &--active {
         opacity: 1;
@@ -18,9 +19,10 @@
         background-color: $red;
         padding: 20px;
         min-width: 90px;
-        min-height: 59px;
+        min-height: 60px;
+        font-size: 0.9rem;
         margin: 5px;
-        border-radius: 29.5px;
+        border-radius: 30px;
         transition: $transition--standard;
 
         &:focus,

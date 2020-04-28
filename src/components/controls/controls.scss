@@ -16,6 +16,13 @@
         background: transparent;
         transition: all .2s ease-in-out;
 
+        &--settings {
+
+          img {
+            @include size(20px, 20px);
+          }
+        }
+
         @media (max-width: 768px) {
             display: none;
         }

@@ -81,7 +81,9 @@ const Drafts = () => {
       type: 'popover',
       payload: {
         toggle: true,
-        index: index
+        type: 'draft_delete',
+        index: index,
+        button_text: 'Delete'
       }
     })
 
@@ -136,7 +138,7 @@ const Drafts = () => {
 
           </div>
           <button className='drafts__add-mobile' onClick={toggleModify}>
-            <img src='/add.svg' alt='Create new draft' />
+            <img src='/icons/close.svg' alt='Create new draft' />
           </button>
         </div>
       )

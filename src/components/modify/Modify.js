@@ -81,7 +81,7 @@ const Modify = () => {
     e.preventDefault()
     inputRef.current.select()
     document.execCommand('copy')
-    setCopyStatus(<img className='modify__button--tick' alt='Text Copied' src="/tick.svg" />)
+    setCopyStatus(<img className='modify__button--tick' alt='Text Copied' src="/icons/check.svg" />)
     inputRef.current.focus()
     inputRef.current.setSelectionRange(charCount, charCount)
 

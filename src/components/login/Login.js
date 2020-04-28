@@ -126,7 +126,7 @@ const Login = () => {
       <div className="login__container">
         <Header />
         <div className="login__links">
-          <img src='/writer-beard.svg' />
+          <img alt='Home page art' src='/writer-beard.svg' />
 
           <div style={{ marginTop: 30 }} className='placeholder'>
             {/* <div className='placeholder__landing-art' /> */}

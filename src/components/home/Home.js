@@ -2,9 +2,8 @@ import React from 'react'
 import { useStateValue } from '../../state'
 import Header from '../header/Header'
 import Drafts from '../drafts/Drafts'
-import GoalBar from '../goal-bar'
-import Controls from '../controls/Controls'
 import Modify from '../modify/Modify'
+import Settings from '../settings/Settings'
 import LogOut from '../logout/Logout'
 
 const Home = () => {
@@ -16,6 +15,7 @@ const Home = () => {
                 <Header />
                 <Drafts />
                 <Modify />
+                <Settings />
                 <LogOut />
             </>
         )

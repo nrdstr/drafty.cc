@@ -1,10 +1,40 @@
 .settings {
     @include flex(column, center, center);
     @include size(100%, 100%);
+    min-width: 300px;
+    position: absolute;
+    top: 0;
+    left: 0;
     background-color: $dark-blue;
+    transition: $transition--standard;
+    z-index: 2001;
 
     h2 {
        margin: 0;
        margin-bottom: 10px;
+    }
+
+    &__list {
+        @include flex(column, center, center);
+        width: 100%;
+        max-width: 600px;
+        padding: 0 15px;
+
+        @media (max-width: 768px) {
+            padding: 0 10px;
+            max-width: 100%;
+        }
+
+        li {
+            @include flex(row, space-between, center);
+            width: 100%;
+            border-bottom: 1px solid white;
+            padding: 20px 0;
+        }
+    }
+
+    &__drafts {
+        min-width: 90px;
+        text-align: center;
     }
 }

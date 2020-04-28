@@ -17,11 +17,17 @@ export const initialState = {
   },
   animations: {
     overlay: 'animate--fade-in',
-    loader_out: false
+    loader_out: false,
+    draft_delete: ''
   },
   popover: {
     toggle: false,
-    index: null
+    type: '',
+    index: null,
+    buttonText: ''
+  },
+  settings: {
+    toggle: false
   },
   toggleLogout: false,
   isLoading: false
