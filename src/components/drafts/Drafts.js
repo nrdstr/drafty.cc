@@ -1,11 +1,18 @@
-import React, { useState, useEffect } from "react"
+import React, { useEffect } from "react"
 import { useStateValue } from "../../state"
 import firebase from "../../utils/firebase"
+import Draft from './Draft'
 
 const Drafts = () => {
-  const [{ user, modify, drafts, animations, popover }, dispatch] = useStateValue()
-
-  // const [drafts, setDrafts] = useState([])
+  const [
+    {
+      user,
+      modify,
+      drafts,
+      animations,
+      popover
+    },
+    dispatch] = useStateValue()
 
   const getExistingUserData = () => {
     dispatch({
@@ -19,7 +26,6 @@ const Drafts = () => {
         try {
           const data = snapshot.val()
           if (data) {
-            // console.log('detected DB object', data)
             if (data.drafts && data.drafts.length > 0) {
               dispatch({
                 type: 'drafts',
@@ -92,31 +98,33 @@ const Drafts = () => {
     })
   }
 
+  const detectKeyDown = e => {
+    if (e.key === '=') {
+      setTimeout(() => {
+        toggleModify()
+      }, 100)
+    }
+  }
+
   useEffect(() => {
     getExistingUserData()
+    document.addEventListener('keypress', e => detectKeyDown(e))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const renderDraft = (draft, i) => {
-    return <div key={draft.text.slice(0, 10)} className='draft'>
-      <div onClick={() => handleEditDraft(i)} className='draft__clickable-wrapper'>
-        <p className='draft__text'>
-          {draft.text}
-        </p>
-      </div>
-      <button className='draft__delete' onClick={() => handleDeleteDraft(i)}>
-        <img src='/trash.svg' alt='Delete this draft' />
-      </button>
-    </div>
-  }
+  const renderDraft = (draft, i) =>
+    <Draft key={draft.text.slice(0, 10)}
+      draft={draft}
+      index={i}
+      handleEditDraft={handleEditDraft}
+      handleDeleteDraft={handleDeleteDraft} />
 
   if (user.isAuthenticated) {
     if (drafts && drafts.length) {
-      const d = drafts
       return (
         <div className={`drafts__container animate--fade-in ${popover.toggle ? 'blur' : ''}`}>
-          <div className='drafts animate--fade-in'>
-            {d.map((draft, i) => renderDraft(draft, i))}
+          <div className='drafts'>
+            {drafts.map((draft, i) => renderDraft(draft, i))}
             <div style={{ paddingTop: 10, paddingBottom: 10 }} className='placeholder'>
               <button style={{ marginTop: 20, marginBottom: 20 }} onClick={toggleModify} className='placeholder__button'>
                 <span className='btn__inner'>
@@ -126,7 +134,6 @@ const Drafts = () => {
               </button>
             </div>
 
-            {/* <p className='text text--medium text--light text--slim'>the end</p> */}
           </div>
           <button className='drafts__add-mobile' onClick={toggleModify}>
             <img src='/add.svg' alt='Create new draft' />

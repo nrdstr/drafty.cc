@@ -1,10 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap');
 @import './styles/shared/variables';
 @import './styles/shared/mixins';
+@import './styles/shared/icons';
 @import './styles/shared/animations';
 @import './components/header/header';
 @import './components/drafts/drafts';
 @import './components/controls/controls';
+@import './components/settings/settings';
 @import './components/modify/modify';
 @import './components/login/login';
 @import './components/logout/logout';
@@ -65,87 +67,6 @@ button {
     width: 100%;
     max-width: 1200px;
     text-align: center;
-  }
-
-  &__header {
-    position: fixed;
-    top: 0;
-    @include flex(row, space-between, center);
-    font-family: $font--main;
-    font-weight: 400;
-    font-size: 1.5rem;
-    background-color: $dark-blue;
-    color: white;
-    width: 100%;
-    max-width: 1200px;
-    box-sizing: border-box;
-    padding: 15px 20px 10px 20px;
-    transition: filter 0.2s ease-in-out;
-    z-index: 2000;
-
-    @media (max-width: 768px) {
-      padding: 20px 10px;
-    }
-
-    &--login {
-      @include flex(row, center, center);
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-
-    &--logout {
-      background: url('/logout.svg') no-repeat right;
-      background-size: contain;
-      height: 23px;
-      margin: 0;
-    }
-
-    &-avatar {
-      @include size(75px, 75px);
-      border-radius: 50%;
-      overflow: hidden;
-
-      @media (max-width: 768px) {
-        @include size(50px, 50px);
-      }
-
-      img {
-        @include size(100%, 100%);
-      }
-    }
-
-    a {
-      @include flex(row, center, center);
-      font-size: 2rem;
-      color: white;
-      cursor: pointer;
-    }
-  }
-
-  &__header-button {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: transparent;
-    border: none;
-    padding: 0;
-    margin: 0;
-    cursor: pointer;
-    transform: scale(1);
-    transform-origin: center;
-    transition: transform 0.3s ease;
-
-    img {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      border: 2px solid white;
-
-      @media (max-width: 768px) {
-        border: none;
-      }
-    }
   }
 
   &__date {
@@ -268,15 +189,15 @@ h1 {
   }
 
   &--small {
-      font-size: 0.8rem;
+      font-size: 0.8rem !important;
   }
 
   &--medium {
-      font-size: 1.1rem;
+      font-size: 1.1rem !important;
   }
 
   &--large {
-      font-size: 3rem;
+      font-size: 3rem !important;
   }
 
   &--narrow {
@@ -284,7 +205,7 @@ h1 {
   }
 
   &--italic {
-      font-style: italic;
+      font-style: italic !important;
   }
 }
 
@@ -388,7 +309,7 @@ h1 {
   .btn-text-two {
     background: url('/edit.svg') no-repeat center;
     background-size: contain;
-    @include size(25px, 25px);
+    @include size(20px, 20px);
     transform: scale(0.3);
     transition: $transition--standard;
     opacity: 0;

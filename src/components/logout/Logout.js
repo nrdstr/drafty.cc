@@ -36,8 +36,8 @@ const LogOut = props => {
   const showLogout = toggleLogout ? `logout__container ${animations.overlay}` : `hidden ${animations.overlay}`
   return (
     <div className={showLogout}>
-      <div className='logout__top-bar'>
-        <div className='app__header-avatar'>
+      <div className='header--overlay'>
+        <div className='header__avatar'>
           <img alt='Avatar' src={user.avatar} />
         </div>
         <button className='overlay__cancel' onClick={toggleModal}>
@@ -54,11 +54,6 @@ const LogOut = props => {
             </span>
           </button>
         </div>
-        {/* <button className='logout__button'
-          onClick={handleLogOut}
-          title='Log Out'>
-          Log Out
-        </button> */}
       </div>
       <Footer />
     </div>

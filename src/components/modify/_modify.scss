@@ -21,7 +21,7 @@
     height: 100%;
     background-color: $dark-blue;
     transition: all 0.5s ease;
-    z-index: 9999;
+    z-index: 9000;
 
     form {
       @include flex(column, center, center);
@@ -31,7 +31,7 @@
     textarea {
       flex: 1;
       background: transparent;
-      border: none;
+      border: 2px solid transparent;
       width: 100%;
       z-index: 2000;
       box-sizing: border-box;

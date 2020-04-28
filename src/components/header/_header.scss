@@ -1,4 +1,35 @@
 .header {
+    position: fixed;
+    top: 0;
+    @include flex(row, space-between, center);
+    font-family: $font--main;
+    font-weight: 400;
+    font-size: 1.5rem;
+    background-color: $dark-blue;
+    width: 100%;
+    max-width: 1200px;
+    box-sizing: border-box;
+    padding: 15px 20px 10px 20px;
+    transition: filter 0.2s ease-in-out;
+    z-index: 2000;
+
+    @media (max-width: 768px) {
+        padding: 20px 10px;
+    }
+
+    &--login {
+        @include flex(row, center, center);
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    a {
+        @include flex(row, center, center);
+        font-size: 2rem;
+        color: white;
+        cursor: pointer;
+    }
 
     &__user {
         @include flex(row, center, center);
@@ -27,6 +58,44 @@
         color: white;
         margin: 0;
         margin-left: 20px;
+    }
+
+    &__avatar {
+        @include size(75px, 75px);
+        border-radius: 50%;
+        overflow: hidden;
+
+        @media (max-width: 768px) {
+          @include size(50px, 50px);
+        }
+
+        img {
+          @include size(100%, 100%);
+        }
+      }
+
+    &--overlay {
+    @include flex(row, space-between, center);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 15px 20px;
+
+    @media (max-width: 768px) {
+        padding: 20px 10px;
+    }
+
+    button {
+        color: white;
+        cursor: pointer;
+        background: none;
+        outline: 0;
+        border: none;
+        font-size: 2rem;
+        z-index: 3000;
+    }
     }
 
 }

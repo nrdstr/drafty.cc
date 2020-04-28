@@ -26,17 +26,19 @@ const Controls = () => {
         dispatch({ type: "toggleLogout", payload: true })
     }
 
-    return <div className='controls'>
-        <button className='controls__button' onClick={() => toggleModify('new_draft')}>
-            <img src='/add.svg' alt='Create new draft' />
-        </button>
-        <button
-            className="app__header-button"
-            onClick={toggleLogout}
-        >
-            <div className="app__header--logout" />
-        </button>
-    </div>
+    return (
+        <div className='controls'>
+            <button className='controls__button' onClick={() => toggleModify('new_draft')}>
+                <img src='/add.svg' alt='Create new draft' />
+            </button>
+            <button
+                className="controls__button--logout"
+                onClick={toggleLogout}
+            >
+                <div className="icon--logout" />
+            </button>
+        </div>
+    )
 }
 
 export default Controls

@@ -1,0 +1,10 @@
+.icon {
+    width: 100%;
+
+      &--logout {
+        background: url('/logout.svg') no-repeat right;
+        background-size: contain;
+        height: 23px;
+        margin: 0;
+      }
+}

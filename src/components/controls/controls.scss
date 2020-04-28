@@ -24,5 +24,30 @@
             transform: rotate(45deg);
             @include size(17px, 17px);
         }
+
+        &--logout {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: transparent;
+            border: none;
+            padding: 0;
+            margin: 0;
+            cursor: pointer;
+            transform: scale(1);
+            transform-origin: center;
+            transition: transform 0.3s ease;
+
+            img {
+              width: 40px;
+              height: 40px;
+              border-radius: 50%;
+              border: 2px solid white;
+
+              @media (max-width: 768px) {
+                border: none;
+              }
+            }
+          }
     }
 }

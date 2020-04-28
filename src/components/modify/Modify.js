@@ -38,6 +38,8 @@ const Modify = () => {
       inputRef.current.value = ''
       toggleModify("new_draft")
     } catch (e) {
+      setError(true)
+      setDisabled(true)
       console.error(e)
     }
   }
@@ -54,6 +56,8 @@ const Modify = () => {
 
       closeEditModal(false)
     } catch (e) {
+      setError(true)
+      setDisabled(true)
       console.error(e)
     }
   }
@@ -97,6 +101,7 @@ const Modify = () => {
 
   const handleEditDraftInput = e => {
     const text = e.target.value
+    setText(text)
     let d = drafts
     d[modify.edit_draft[1]].text = text
     d[modify.edit_draft[1]].timestamp = moment().unix()
@@ -161,8 +166,8 @@ const Modify = () => {
   if (modify.new_draft) {
     return (
       <div className={`modify__container modify--open ${animations.overlay}`}>
-        <div className="logout__top-bar">
-          <div className='app__header-avatar'>
+        <div className="header--overlay">
+          <div className='header__avatar'>
             <img alt='Avatar' src={user.avatar} />
           </div>
           <button className='overlay__cancel' onClick={() => toggleModify('new_draft')}>
@@ -177,8 +182,11 @@ const Modify = () => {
             maxLength={10000}
             onChange={handleTextInput}
             ref={inputRef}
-            style={error ? { borderBottom: "2px solid red" } : null}
+            style={error ? { border: "2px solid red" } : null}
           />
+          <p className={error ? "modify__error" : "hidden"}>
+            Something's gone wrong. You may want to try refreshing the page.
+          </p>
           <div className='modify__controls'>
             <div className='modify__char-count'>
               <ProgressRing goal={280} progress={charProgress} count={charCount} />
@@ -205,22 +213,16 @@ const Modify = () => {
               Save
             </button>
           </div>
-
-          {/* Error Section */}
-          <p className={error ? "modify__error" : "hidden"}>
-            Something's gone wrong. You may want to try refreshing the page. Copy your text to be safe!
-          </p>
         </form>
       </div>
     )
   } else if (modify.edit_draft[0]) {
     const currDraft = drafts[modify.edit_draft[1]]
     const timestamp = moment.unix(currDraft.timestamp).fromNow()
-    // const timestamp = moment().format('hh:mm:ss')
     return (
       <div className={`modify__container modify--open ${animations.overlay}`}>
-        <div className="logout__top-bar">
-          <div className='app__header-avatar'>
+        <div className="header--overlay">
+          <div className='header__avatar'>
             <img alt='Avatar' src={user.avatar} />
           </div>
           <button className='overlay__cancel' onClick={() => closeEditModal(true)}>
@@ -230,13 +232,17 @@ const Modify = () => {
         <form>
           <textarea
             type="text"
-            placeholder="Have an idea?"
+            placeholder="What's your idea?"
             className="modify__input"
             maxLength={10000}
             onChange={handleEditDraftInput}
             value={drafts[modify.edit_draft[1]].text}
             ref={inputRef}
+            style={error ? { border: "2px solid red" } : null}
           />
+          <p className={error ? "modify__error" : "hidden"}>
+            Something's gone wrong. You may want to try refreshing the page.
+          </p>
           <div className='modify__controls'>
             <div className='modify__timestamp'>
               <p className='text text--tiny text--light text--slim'>
@@ -266,10 +272,6 @@ const Modify = () => {
               Save
             </button>
           </div>
-          {/* Error Section */}
-          <p className={error ? "modify__error" : "hidden"}>
-            Something's gone wrong. You may want to try refreshing the page. Copy your text to be safe!
-          </p>
         </form>
       </div>
     )
