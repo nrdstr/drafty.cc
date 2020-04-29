@@ -7,26 +7,6 @@ import { twitter, auth } from "../../utils/firebase"
 const Login = () => {
   const [{ user, animations }, dispatch] = useStateValue()
 
-  const fetchTwitterUserProfile = async id => {
-    const url = `https://api.stellr.digital/twitter?id=${id}`
-
-    try {
-      const data = await fetch(url)
-      const json = await data.json()
-      dispatch({
-        type: 'twit',
-        payload: {
-          screenName: json.screen_name,
-          followers: json.followers_count,
-          following: json.friends_count,
-          tweets: json.statuses_count
-        }
-      })
-    } catch (e) {
-      console.error(e)
-    }
-  }
-
   const checkForPreviousLogin = () => {
     auth.onAuthStateChanged(async account => {
       try {
@@ -47,7 +27,6 @@ const Login = () => {
             }
           })
 
-          fetchTwitterUserProfile(userInfo.providerData[0].uid)
         }
         setTimeout(() => {
           dispatch({
@@ -71,13 +50,11 @@ const Login = () => {
   }
 
   const loginWithTwitter = async () => {
-    auth.signInWithPopup(twitter).then(async result => {
+    auth.signInWithRedirect(twitter).then(async result => {
       const userData = result.additionalUserInfo.profile
 
       let avatar = userData.profile_image_url
       avatar = avatar.replace("_normal", '')
-
-      await fetchTwitterUserProfile(userData.id)
 
       dispatch({
         type: 'user',

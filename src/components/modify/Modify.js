@@ -147,10 +147,22 @@ const Modify = () => {
     }, 200)
   }
 
+  const detectKeyDown = e => {
+    if (e.shiftKey) {
+      if (e.key === 'Enter')
+        console.log('hit')
+      if (modify.new_draft) {
+        handleSubmitNewDraft(e)
+      }
+
+    }
+  }
+
   useEffect(() => {
     setCharCount(0)
     handleProgressRing(0)
     if (modify.new_draft || modify.edit_draft[0]) {
+      document.addEventListener('keypress', e => detectKeyDown(e))
       inputRef.current.focus()
       inputRef.current.setSelectionRange(charCount, charCount)
       if (modify.edit_draft[0]) {

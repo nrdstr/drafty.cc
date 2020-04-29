@@ -10,12 +10,18 @@ const Popover = props => {
     const handleLogOut = () => {
         auth.signOut()
             .then(() => {
+                const u = {}
                 dispatch({
                     type: 'user',
                     payload: {
-                        ...user,
+                        ...u,
                         isAuthenticated: false
                     }
+                })
+
+                dispatch({
+                    type: 'drafts',
+                    payload: []
                 })
                 closePopover()
             })
@@ -62,8 +68,21 @@ const Popover = props => {
         }
     }
 
-    const handleDeleteAccount = () => {
-        console.log('delete account')
+    const handleDeleteAccount = async () => {
+        const user = firebase.auth().currentUser
+        console.log(`deleting ${user.uid}`)
+
+        try {
+            firebase
+                .database()
+                .ref(`/users`)
+                .child(user.uid)
+                .remove()
+            await user.delete()
+            handleLogOut()
+        } catch (e) {
+            console.error(e)
+        }
     }
 
     const closePopover = () => {
@@ -114,8 +133,8 @@ const Popover = props => {
                 <div className='popover__inner'>
                     <p className='text text--medium text--bold text--center'>Are you sure you want to {confirmText}?</p>
                     <div className='popover__row'>
-                        <button onClick={closePopover} className='popover__btn'>Cancel</button>
-                        <button onClick={confirmButtonFunction} className='popover__btn popover__btn--confirm'>
+                        <button onClick={closePopover} className='popover__btn popover__btn--confirm'>Cancel</button>
+                        <button onClick={confirmButtonFunction} className='popover__btn'>
                             {popover.button_text}
                         </button>
                     </div>

@@ -29,7 +29,7 @@ const Controls = () => {
 
     return (
         <div className='controls'>
-            <button className='controls__button' onClick={() => toggleModify('new_draft')}>
+            <button className='controls__button controls__button--add' onClick={() => toggleModify('new_draft')}>
                 <img src='/icons/close.svg' alt='Create new draft' />
             </button>
 

@@ -37,8 +37,10 @@ const Drafts = () => {
               payload: false
             })
           } else {
+            console.log(user)
             const userData = {
-              ...user
+              twitterID: user.twitterID,
+              uid: user.uid
             }
             firebase.database()
               .ref(`/users/${user.uid}/`)
@@ -125,7 +127,7 @@ const Drafts = () => {
     if (drafts && drafts.length) {
       return (
         <div className={`drafts__container animate--fade-in ${popover.toggle ? 'blur' : ''}`}>
-          <div className='drafts'>
+          <div className='drafts animate--fade-in'>
             {drafts.map((draft, i) => renderDraft(draft, i))}
             <div style={{ paddingTop: 10, paddingBottom: 10 }} className='placeholder'>
               <button style={{ marginTop: 20, marginBottom: 20 }} onClick={toggleModify} className='placeholder__button'>
@@ -156,7 +158,7 @@ const Drafts = () => {
             </button>
 
           </div>
-          <button className='drafts__add-mobile' onClick={toggleModify}>
+          <button style={popover.toggle ? { opacity: 0 } : null} className='drafts__add-mobile' onClick={toggleModify}>
             <img src='/add.svg' alt='Create new draft' />
           </button>
         </div>

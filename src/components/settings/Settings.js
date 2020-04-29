@@ -32,14 +32,15 @@ const Settings = () => {
                     </button>
                 </div>
                 <h2 className='text text--large text--slim'>Settings</h2>
+                <p style={{ margin: 0 }} className='text text--medium text--slim text--light'>{user.username}</p>
                 <ul className='settings__list'>
                     <li>
-                        <p className='text text--medium text--slim'>Drafts(#)</p>
+                        <p className='text text--medium text--slim'>Drafts</p>
                         <p className='settings__drafts text text--medium text--slim text--bold'>{drafts.length}</p>
                     </li>
                     <li>
                         <p className='text text--medium text--slim'>Log out</p>
-                        <button onClick={() => toggleConfirmPopover('log_out', 'Logout')} className='popover__btn'>
+                        <button onClick={() => toggleConfirmPopover('log_out', 'Logout')} className='popover__btn popover__btn--confirm'>
                             Logout
                         </button>
                     </li>

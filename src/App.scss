@@ -357,31 +357,3 @@ h1 {
     filter: blur(6px);
   }
 }
-
-
-
-.delete {
-  @include flex(row, center, center);
-  @include size(100%, 100%);
-  background-color: $dark-blue;
-
-  &::after {
-    content: '';
-    position: absolute;
-    width: 64px;
-    height: 64px;
-    margin-top: -32px;
-    margin-left: -32px;
-    background-image: url('https://i.imgur.com/uwuRLCV.png?1');
-    background-repeat: no-repeat;
-    background-position: 64px 0;
-    transform: scale(2);
-    animation: ignite 0.5s steps(25) 0s 1 normal forwards running;
-  }
-}
-
-
-@keyframes ignite {
-  from { background-position: 0 0; }
-  to { background-position: -1600px 0; }
-}
