@@ -1,5 +1,4 @@
 import React from "react"
-import moment from "moment"
 import { useStateValue } from "../../state"
 import Controls from '../controls/Controls'
 
@@ -22,7 +21,7 @@ const Header = () => {
     return (
       <header className="header header--login">
         <div className='header__logo header__logo--login' />
-        <h1 className='text text--large text--bold text--narrow' style={{ margin: "0 0 3px 0" }}>twotter</h1>
+        <h1 className='text text--large text--bold text--narrow' style={{ margin: "0 0 3px 0" }}>drafty</h1>
       </header>
     )
   }
