@@ -12,6 +12,7 @@ const Settings = () => {
                 overlay: 'animate--fade-out'
             }
         })
+        dispatch({ type: 'show_drafts', payload: true })
         setTimeout(() => {
             dispatch({ type: 'settings', payload: { ...settings, toggle: false } })
         }, 200)

@@ -36,8 +36,8 @@ const Modify = () => {
         .update(d)
 
       inputRef.current.value = ''
-      toggleModify("new_draft")
       dispatch({ type: 'show_drafts', payload: true })
+      toggleModify("new_draft")
     } catch (e) {
       setError(true)
       setDisabled(true)
@@ -120,9 +120,9 @@ const Modify = () => {
         overlay: 'animate--fade-out'
       }
     })
+    dispatch({ type: 'show_drafts', payload: true })
     setTimeout(() => {
       dispatch({ type: "modify", payload: { ...modify, [operation]: false } })
-      dispatch({ type: 'show_drafts', payload: true })
       setDisabled(true)
     }, 200)
   }
