@@ -27,6 +27,9 @@
         }
 
         &--settings {
+          @media (max-width: 600px) {
+            padding-right: 0;
+          }
 
           img {
             width: 20px !important;

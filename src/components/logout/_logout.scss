@@ -70,6 +70,10 @@
   &__cancel {
     z-index: 9000;
 
+    @media (max-width: 600px) {
+      padding-right: 0;
+    }
+
     img {
       @include size(30px, 30px);
 

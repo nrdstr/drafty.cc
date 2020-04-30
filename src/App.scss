@@ -358,3 +358,7 @@ h1 {
     filter: blur(6px);
   }
 }
+
+.no-scroll {
+  overflow: hidden !important;
+}

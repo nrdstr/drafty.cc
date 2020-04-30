@@ -1,27 +1,34 @@
-import React from "react"
-import { StateProvider, initialState } from "./state"
-import { rootReducer } from "./reducers"
+import React, { useState, useEffect } from "react"
 import Loader from "./components/loader"
 import Login from "./components/login/Login"
+import { useStateValue } from './state'
 import Popover from './components/popover/Popover'
-import Div100vh from "react-div-100vh"
 import Home from "./components/home/Home"
 import "./App.scss"
 
 function App() {
+  const [{ popover, modify, settings }] = useStateValue()
+  const [scroll, setScroll] = useState('')
+
+  useEffect(() => {
+    if (popover.toggle || modify.new_draft || modify.edit_draft[0] || settings.toggle) {
+      setScroll('no-scroll')
+    } else {
+      setScroll('')
+    }
+  }, [popover.toggle || modify.new_draft || modify.edit_draft[0] || settings.toggle])
+
   return (
-    <StateProvider initialState={initialState} reducer={rootReducer}>
-      <div className="app">
-        <main className="app__wrapper">
-          <div className='app__inner'>
-            <Loader />
-            <Login />
-            <Home />
-          </div>
-          <Popover />
-        </main>
-      </div>
-    </StateProvider>
+    <div className='app'>
+      <main className={`app__wrapper ${scroll}`}>
+        <div className='app__inner'>
+          <Loader />
+          <Login />
+          <Home />
+        </div>
+        <Popover />
+      </main>
+    </div>
   )
 }
 
