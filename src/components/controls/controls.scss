@@ -16,6 +16,10 @@
         background: transparent;
         transition: all .2s ease-in-out;
 
+        @media (max-width: 768px) {
+          margin-right:  0;
+        }
+
         &--add {
           @media (max-width: 768px) {
             display: none;

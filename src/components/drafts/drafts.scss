@@ -12,13 +12,13 @@
 
   &__add-mobile {
     @include flex(row, center, center);
-    @include size(77px, 77px);
+    @include size(65px, 65px);
     display: none;
     position: fixed;
     bottom: 0;
     opacity: 1;
     right: 0;
-    margin: 0 30px 30px 0;
+    margin: 0 20px 20px 0;
     background-color: $blue--vibrant;
     border-radius: 50%;
     transition: $transition--standard;
@@ -124,6 +124,10 @@
     font-size: 1rem;
     text-overflow: ellipsis;
     overflow: hidden;
+
+    @media (max-height: 610px) {
+      -webkit-line-clamp: 4;
+    }
   }
 
   &__delete {
@@ -153,6 +157,10 @@
 
     img {
       @include size(20px, 20px);
+
+      @media (max-width: 375px) {
+        @include size(18px, 18px);
+      }
     }
   }
 }

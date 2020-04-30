@@ -2,7 +2,7 @@
     @include flex(column, center, center);
     @include size(100%, 100%);
     min-width: 300px;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     background-color: $dark-blue;
@@ -30,6 +30,14 @@
             width: 100%;
             border-bottom: 1px solid white;
             padding: 20px 0;
+
+            @media (max-width: 768px) {
+                padding: 10px 0;
+            }
+
+            &:last-child {
+                border-bottom: 0;
+            }
         }
     }
 

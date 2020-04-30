@@ -68,6 +68,15 @@
 .overlay {
 
   &__cancel {
-    @include size(40px, 40px);
+    z-index: 9000;
+
+    img {
+      @include size(30px, 30px);
+
+      @media (max-width: 375px) {
+        @include size(25px, 25px);
+      }
+    }
+
   }
 }

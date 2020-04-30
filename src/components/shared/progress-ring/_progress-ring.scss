@@ -5,7 +5,6 @@
 
   &__container {
     @include flex(row, center, center);
-    min-height: 100px;
   }
 
   &__text {

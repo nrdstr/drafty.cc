@@ -255,34 +255,37 @@ const Modify = () => {
           <p className={error ? "modify__error" : "hidden"}>
             Something's gone wrong. You may want to try refreshing the page.
           </p>
-          <div className='modify__controls'>
+          <div className='modify__controls-container'>
+            <div className='modify__controls'>
+
+              <ProgressRing goal={280} progress={charProgress} count={charCount} />
+              <button
+                className="modify__button"
+                onClick={handleCopyText}
+                disabled={disabled || error}
+              >
+                {copyStatus}
+              </button>
+              <button
+                className="modify__button"
+                onClick={handleComposeNewTweet}
+                disabled={disabled || error}
+              >
+                Tweet
+</button>
+              <button
+                className="modify__button modify__button--save"
+                onClick={handleSubmitEditDraft}
+                disabled={disabled || error}
+              >
+                Save
+</button>
+            </div>
             <div className='modify__timestamp'>
               <p className='text text--tiny text--light text--slim'>
                 <em>last modified {timestamp}</em>
               </p>
             </div>
-            <ProgressRing goal={280} progress={charProgress} count={charCount} />
-            <button
-              className="modify__button"
-              onClick={handleCopyText}
-              disabled={disabled || error}
-            >
-              {copyStatus}
-            </button>
-            <button
-              className="modify__button"
-              onClick={handleComposeNewTweet}
-              disabled={disabled || error}
-            >
-              Tweet
-            </button>
-            <button
-              className="modify__button modify__button--save"
-              onClick={handleSubmitEditDraft}
-              disabled={disabled || error}
-            >
-              Save
-            </button>
           </div>
         </form>
       </div>
