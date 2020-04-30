@@ -14,6 +14,7 @@ const Controls = () => {
             }
         })
         dispatch({ type: 'modify', payload: { ...modify, [operator]: true } })
+        dispatch({ type: 'show_drafts', payload: false })
     }
 
     const toggleSettings = () => {
@@ -25,6 +26,7 @@ const Controls = () => {
             }
         })
         dispatch({ type: 'settings', payload: { ...Settings, toggle: true } })
+        dispatch({ type: 'show_drafts', payload: false })
     }
 
     return (

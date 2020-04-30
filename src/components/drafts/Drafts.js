@@ -9,6 +9,7 @@ const Drafts = () => {
       user,
       modify,
       drafts,
+      show_drafts,
       animations,
       popover
     },
@@ -69,6 +70,7 @@ const Drafts = () => {
         edit_draft: editArr
       }
     })
+    dispatch({ type: 'show_drafts', payload: false })
   }
 
   const handleDeleteDraft = index => {
@@ -100,6 +102,7 @@ const Drafts = () => {
         overlay: 'animate--fade-in'
       }
     })
+    dispatch({ type: 'show_drafts', payload: false })
   }
 
   const detectKeyDown = e => {
@@ -123,11 +126,11 @@ const Drafts = () => {
       handleEditDraft={handleEditDraft}
       handleDeleteDraft={handleDeleteDraft} />
 
-  if (user.isAuthenticated) {
+  if (show_drafts && user.isAuthenticated) {
     if (drafts && drafts.length) {
       return (
         <div className={`drafts__container animate--fade-in ${popover.toggle ? 'blur' : ''}`}>
-          <div className='drafts animate--fade-in'>
+          <div className={`drafts animate--fade-in ${modify.new_draft || modify.edit_draft[0] ? 'remove' : ''}`}>
             {drafts.map((draft, i) => renderDraft(draft, i))}
             <div style={{ paddingTop: 10, paddingBottom: 10 }} className='placeholder'>
               <button style={{ marginTop: 20, marginBottom: 20 }} onClick={toggleModify} className='placeholder__button'>

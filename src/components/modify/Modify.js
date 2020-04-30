@@ -12,7 +12,7 @@ const Modify = () => {
     [copyStatus, setCopyStatus] = useState('Copy'),
     [charCount, setCharCount] = useState(0),
     [charProgress, setCharProgress] = useState(0),
-    [{ user, modify, drafts, animations }, dispatch] = useStateValue(),
+    [{ user, modify, drafts, animations, show_drafts }, dispatch] = useStateValue(),
     inputRef = useRef(null)
 
   const handleSubmitNewDraft = e => {
@@ -37,6 +37,7 @@ const Modify = () => {
 
       inputRef.current.value = ''
       toggleModify("new_draft")
+      dispatch({ type: 'show_drafts', payload: true })
     } catch (e) {
       setError(true)
       setDisabled(true)
@@ -53,7 +54,7 @@ const Modify = () => {
         .ref(`/users/${user.uid}`)
         .child("drafts")
         .update(drafts)
-
+      dispatch({ type: 'show_drafts', payload: true })
       closeEditModal(false)
     } catch (e) {
       setError(true)
@@ -121,6 +122,7 @@ const Modify = () => {
     })
     setTimeout(() => {
       dispatch({ type: "modify", payload: { ...modify, [operation]: false } })
+      dispatch({ type: 'show_drafts', payload: true })
       setDisabled(true)
     }, 200)
   }
@@ -141,28 +143,17 @@ const Modify = () => {
         overlay: 'animate--fade-out'
       }
     })
+    dispatch({ type: 'show_drafts', payload: true })
     setDisabled(true)
     setTimeout(() => {
       dispatch({ type: 'modify', payload: { ...modify, edit_draft: [false, null] } })
     }, 200)
   }
 
-  const detectKeyDown = e => {
-    if (e.shiftKey) {
-      if (e.key === 'Enter')
-        console.log('hit')
-      if (modify.new_draft) {
-        handleSubmitNewDraft(e)
-      }
-
-    }
-  }
-
   useEffect(() => {
     setCharCount(0)
     handleProgressRing(0)
     if (modify.new_draft || modify.edit_draft[0]) {
-      document.addEventListener('keypress', e => detectKeyDown(e))
       inputRef.current.focus()
       inputRef.current.setSelectionRange(charCount, charCount)
       if (modify.edit_draft[0]) {

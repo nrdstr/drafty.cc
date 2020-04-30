@@ -9,6 +9,7 @@ export const initialState = {
     username: null,
     avatar: null,
   },
+  show_drafts: true,
   drafts: [],
   twit: {},
   modify: {
