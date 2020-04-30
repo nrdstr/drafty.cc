@@ -2,6 +2,7 @@ import React, { useEffect } from "react"
 import { useStateValue } from "../../state"
 import Header from "../header/Header"
 import Footer from "../footer/Footer"
+import Div100vh from 'react-div-100vh'
 import { twitter, auth } from "../../utils/firebase"
 
 const Login = () => {
@@ -100,7 +101,7 @@ const Login = () => {
 
   if (!user.isAuthenticated) {
     return (
-      <div className="login__container">
+      <Div100vh className="login__container">
         <Header />
         <div className="login__links">
           <img alt='Home page art' src='/writer-beard.svg' />
@@ -116,7 +117,7 @@ const Login = () => {
           </div>
         </div>
         <Footer />
-      </div>
+      </Div100vh>
     )
   } else {
     return null

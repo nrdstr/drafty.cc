@@ -1,5 +1,6 @@
 import React from 'react'
 import { useStateValue } from '../../state'
+import Div100vh from 'react-div-100vh'
 
 const Settings = () => {
     const [{ user, drafts, animations, settings, popover }, dispatch] = useStateValue()
@@ -23,7 +24,7 @@ const Settings = () => {
 
     if (settings.toggle) {
         return (
-            <div className={`settings ${animations.overlay} ${popover.toggle ? 'blur' : ''}`}>
+            <Div100vh className={`settings ${animations.overlay} ${popover.toggle ? 'blur' : ''}`}>
                 <div className="header--overlay">
                     <div className='header__avatar'>
                         <img alt='Avatar' src={user.avatar} />
@@ -58,7 +59,7 @@ const Settings = () => {
                         </button>
                     </li>
                 </ul>
-            </div>
+            </Div100vh>
         )
     } else {
         return null

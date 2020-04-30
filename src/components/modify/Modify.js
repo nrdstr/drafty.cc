@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react"
 import { useStateValue } from "../../state"
 import firebase from "firebase"
+import Div100vh from 'react-div-100vh'
 import moment from 'moment'
 import ProgressRing from '../shared/progress-ring/ProgressRing'
 
@@ -168,7 +169,7 @@ const Modify = () => {
 
   if (modify.new_draft) {
     return (
-      <div className={`modify__container modify--open ${animations.overlay}`}>
+      <Div100vh className={`modify__container modify--open ${animations.overlay}`}>
         <div className="header--overlay">
           <div className='header__avatar'>
             <img alt='Avatar' src={user.avatar} />
@@ -190,40 +191,47 @@ const Modify = () => {
           <p className={error ? "modify__error" : "hidden"}>
             Something's gone wrong. You may want to try refreshing the page.
           </p>
-          <div className='modify__controls'>
-            <div className='modify__char-count'>
-              <ProgressRing goal={280} progress={charProgress} count={charCount} />
+          <div className='modify__controls-container'>
+            <div className='modify__timestamp'>
+              <p style={{ opacity: 0 }} className='text text--tiny text--light text--slim'>
+                <em>last modified</em>
+              </p>
             </div>
-            <button
-              className="modify__button"
-              onClick={handleCopyText}
-              disabled={disabled || error}
-            >
-              {copyStatus}
+            <div className='modify__controls'>
+              <div className='modify__char-count'>
+                <ProgressRing goal={280} progress={charProgress} count={charCount} />
+              </div>
+              <button
+                className="modify__button"
+                onClick={handleCopyText}
+                disabled={disabled || error}
+              >
+                {copyStatus}
+              </button>
+              <button
+                className="modify__button"
+                onClick={handleComposeNewTweet}
+                disabled={disabled || error}
+              >
+                Tweet
             </button>
-            <button
-              className="modify__button"
-              onClick={handleComposeNewTweet}
-              disabled={disabled || error}
-            >
-              Tweet
+              <button
+                className="modify__button modify__button--save"
+                onClick={handleSubmitNewDraft}
+                disabled={disabled || error}
+              >
+                Save
             </button>
-            <button
-              className="modify__button modify__button--save"
-              onClick={handleSubmitNewDraft}
-              disabled={disabled || error}
-            >
-              Save
-            </button>
+            </div>
           </div>
         </form>
-      </div>
+      </Div100vh>
     )
   } else if (modify.edit_draft[0]) {
     const currDraft = drafts[modify.edit_draft[1]]
     const timestamp = moment.unix(currDraft.timestamp).fromNow()
     return (
-      <div className={`modify__container modify--open ${animations.overlay}`}>
+      <Div100vh className={`modify__container modify--open ${animations.overlay}`}>
         <div className="header--overlay">
           <div className='header__avatar'>
             <img alt='Avatar' src={user.avatar} />
@@ -247,6 +255,7 @@ const Modify = () => {
             Something's gone wrong. You may want to try refreshing the page.
           </p>
           <div className='modify__controls-container'>
+
             <div className='modify__controls'>
 
               <ProgressRing goal={280} progress={charProgress} count={charCount} />
@@ -279,7 +288,7 @@ const Modify = () => {
             </div>
           </div>
         </form>
-      </div>
+      </Div100vh>
     )
   } else {
     return null

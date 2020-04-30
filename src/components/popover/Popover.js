@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useStateValue } from '../../state'
+import Div100vh from 'react-div-100vh'
 import firebase, { auth } from "../../utils/firebase"
 
 const Popover = props => {
@@ -129,7 +130,7 @@ const Popover = props => {
 
     if (popover.toggle) {
         return (
-            <div className={`popover ${animation}`}>
+            <Div100vh className={`popover ${animation}`}>
                 <div className='popover__inner'>
                     <p className='text text--medium text--bold text--center'>Are you sure you want to {confirmText}?</p>
                     <div className='popover__row'>
@@ -139,7 +140,7 @@ const Popover = props => {
                         </button>
                     </div>
                 </div>
-            </div>
+            </Div100vh>
         )
     } else {
         return null
