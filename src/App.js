@@ -11,7 +11,7 @@ import "./App.scss"
 function App() {
   return (
     <StateProvider initialState={initialState} reducer={rootReducer}>
-      <Div100vh className="app">
+      <div className="app">
         <main className="app__wrapper">
           <div className='app__inner'>
             <Loader />
@@ -20,7 +20,7 @@ function App() {
           </div>
           <Popover />
         </main>
-      </Div100vh>
+      </div>
     </StateProvider>
   )
 }
