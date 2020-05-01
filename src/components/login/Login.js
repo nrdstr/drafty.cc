@@ -107,10 +107,9 @@ const Login = () => {
           <img alt='Home page art' src='/writer-beard.svg' />
 
           <div style={{ marginTop: 30 }} className='placeholder'>
-            {/* <div className='placeholder__landing-art' /> */}
             <button onClick={loginWithTwitter} className='placeholder__button placeholder__button--landing'>
               <span className='btn__inner'>
-                <span className='icon fas btn-text-one text text--small text--slim'>Login with Twitter</span>
+                <span className='icon btn-text-one text text--medium'>Log in with Twitter</span>
                 <span className='btn-text--twitter' />
               </span>
             </button>

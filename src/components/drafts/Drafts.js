@@ -2,6 +2,7 @@ import React, { useEffect } from "react"
 import { useStateValue } from "../../state"
 import firebase from "../../utils/firebase"
 import Draft from './Draft'
+import Div100vh from 'react-div-100vh'
 
 const Drafts = () => {
   const [
@@ -151,7 +152,7 @@ const Drafts = () => {
       )
     } else {
       return (
-        <div className='drafts__container animate--fade-in'>
+        <div className='drafts__container drafts__container--placeholder animate--fade-in'>
           <div className='drafts placeholder'>
             <div className='placeholder__art' />
 

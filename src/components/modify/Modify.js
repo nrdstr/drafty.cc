@@ -13,7 +13,7 @@ const Modify = () => {
     [copyStatus, setCopyStatus] = useState('Copy'),
     [charCount, setCharCount] = useState(0),
     [charProgress, setCharProgress] = useState(0),
-    [{ user, modify, drafts, animations, show_drafts }, dispatch] = useStateValue(),
+    [{ user, modify, drafts, animations }, dispatch] = useStateValue(),
     inputRef = useRef(null)
 
   const handleSubmitNewDraft = e => {
