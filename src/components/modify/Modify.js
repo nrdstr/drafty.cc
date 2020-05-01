@@ -23,7 +23,7 @@ const Modify = () => {
       text: text,
       timestamp: moment().unix()
     }
-    d.push(data)
+    d.unshift(data)
     dispatch({
       type: 'drafts',
       payload: d
@@ -114,6 +114,7 @@ const Modify = () => {
   }
 
   const toggleModify = operation => {
+    dispatch({ type: 'show_drafts', payload: true })
     dispatch({
       type: 'animations',
       payload: {
@@ -121,7 +122,6 @@ const Modify = () => {
         overlay: 'animate--fade-out'
       }
     })
-    dispatch({ type: 'show_drafts', payload: true })
     setTimeout(() => {
       dispatch({ type: "modify", payload: { ...modify, [operation]: false } })
       setDisabled(true)
@@ -137,6 +137,7 @@ const Modify = () => {
         payload: drafts
       })
     }
+    dispatch({ type: 'show_drafts', payload: true })
     dispatch({
       type: 'animations',
       payload: {
@@ -144,7 +145,6 @@ const Modify = () => {
         overlay: 'animate--fade-out'
       }
     })
-    dispatch({ type: 'show_drafts', payload: true })
     setDisabled(true)
     setTimeout(() => {
       dispatch({ type: 'modify', payload: { ...modify, edit_draft: [false, null] } })

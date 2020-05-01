@@ -77,8 +77,8 @@
     img {
       @include size(30px, 30px);
 
-      @media (max-width: 375px) {
-        @include size(25px, 25px);
+      @media (max-width: 415px) {
+        @include size(22px, 22px);
       }
     }
 

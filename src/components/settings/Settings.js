@@ -6,6 +6,7 @@ const Settings = () => {
     const [{ user, drafts, animations, settings, popover }, dispatch] = useStateValue()
 
     const toggleSettings = () => {
+        dispatch({ type: 'show_drafts', payload: true })
         dispatch({
             type: 'animations',
             payload: {
@@ -13,7 +14,6 @@ const Settings = () => {
                 overlay: 'animate--fade-out'
             }
         })
-        dispatch({ type: 'show_drafts', payload: true })
         setTimeout(() => {
             dispatch({ type: 'settings', payload: { ...settings, toggle: false } })
         }, 200)
@@ -33,7 +33,7 @@ const Settings = () => {
                         <img src='/close.svg' alt='Close Settings' />
                     </button>
                 </div>
-                <h2 className='text text--large text--slim'>Settings</h2>
+                {/* <h2 className='text text--large text--slim'>Settings</h2> */}
                 <p style={{ margin: 0 }} className='text text--medium text--slim text--light'>{user.username}</p>
                 <ul className='settings__list'>
                     <li>
@@ -54,7 +54,7 @@ const Settings = () => {
                     </li>
                     <li>
                         <p className='text text--medium text--slim'>Delete my account</p>
-                        <button onClick={() => toggleConfirmPopover('account_delete', 'Delete')} className='popover__btn'>
+                        <button style={{ marginRight: 16 }} onClick={() => toggleConfirmPopover('account_delete', 'Delete')} className='text text--medium text--red'>
                             Delete
                         </button>
                     </li>

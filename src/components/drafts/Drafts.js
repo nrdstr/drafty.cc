@@ -11,7 +11,8 @@ const Drafts = () => {
       drafts,
       show_drafts,
       animations,
-      popover
+      popover,
+      settings
     },
     dispatch] = useStateValue()
 
@@ -130,15 +131,16 @@ const Drafts = () => {
     if (drafts && drafts.length) {
       return (
         <div className={`drafts__container animate--fade-in ${popover.toggle ? 'blur' : ''}`}>
-          <div className={`drafts animate--fade-in ${modify.new_draft || modify.edit_draft[0] ? 'remove' : ''}`}>
+          <div className={`drafts animate--fade-in`}>
             {drafts.map((draft, i) => renderDraft(draft, i))}
             <div style={{ paddingTop: 10, paddingBottom: 10 }} className='placeholder'>
-              <button style={{ marginTop: 20, marginBottom: 20 }} onClick={toggleModify} className='placeholder__button'>
+              <button style={{ marginTop: 20, marginBottom: 20 }} onClick={toggleModify} className='placeholder__button button__draft'>
                 <span className='btn__inner'>
                   <span className='icon fas btn-text-one text--slim'>Add new draft</span>
                   <span className='icon fas btn-text-two' />
                 </span>
               </button>
+              <div className='placeholder__logo' />
             </div>
 
           </div>

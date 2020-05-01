@@ -71,7 +71,6 @@ button {
     height: 100%;
     width: 100%;
     overflow-y: auto;
-    scrollbar-color: red yellow;
     margin: 0;
   }
 
@@ -199,6 +198,10 @@ h1 {
       color: $blue;
   }
 
+  &--red {
+    color: $red;
+  }
+
   &--tiny {
     font-size: 0.78rem !important;
   }
@@ -208,7 +211,7 @@ h1 {
   }
 
   &--medium {
-      font-size: 1.1rem !important;
+      font-size: 1rem !important;
   }
 
   &--large {
@@ -248,9 +251,20 @@ h1 {
     @include size(100%, 400px);
   }
 
+  &__logo {
+    background: url('/logo/logo-solid-dark.svg') no-repeat center;
+    background-size: contain;
+    @include size(40px, 40px);
+    margin: 20px 0;
+
+    @media(min-width: 769px) {
+      display: none;
+    }
+  }
+
   &__button {
     @include flex(row, center, center);
-    @include size($btn-width, $btn-width / 2.5);
+    @include size($btn-width, $btn-width / 2.8);
     // margin-bottom: 10px;
     position: relative;
     border: 0;
@@ -370,4 +384,14 @@ h1 {
 
 .remove {
   display: none;
+}
+
+
+.button {
+
+  &__draft {
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
 }
