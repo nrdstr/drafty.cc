@@ -19,7 +19,7 @@ const Loader = () => {
   }, [animations.loader_out])
   if (isLoading) {
     return (
-      <Div100vh ref={container} className="loader__container">
+      <div ref={container} className="loader__container">
         <div className={`loader__body ${endLoad ? 'animate--fade-out' : ''}`}>
           <span>
             <span></span>
@@ -35,7 +35,7 @@ const Loader = () => {
           <span></span>
           <span></span>
         </div>
-      </Div100vh>
+      </div>
     )
   } else {
     return null

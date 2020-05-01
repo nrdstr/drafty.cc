@@ -21,7 +21,7 @@ function App() {
   }, [popover.toggle || modify.new_draft || modify.edit_draft[0] || settings.toggle])
 
   return (
-    <div className={`app ${scroll}`}>
+    <Div100vh className={`app ${scroll}`}>
       <main className={`app__wrapper ${scroll}`}>
         <div style={drafts.length > 0 ? null : { height: '100%' }} className={`app__inner ${scroll}`}>
           <Loader />
@@ -30,7 +30,7 @@ function App() {
         </div>
         <Popover />
       </main>
-    </div>
+    </Div100vh>
   )
 }
 
