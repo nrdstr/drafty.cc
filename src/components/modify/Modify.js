@@ -169,7 +169,7 @@ const Modify = () => {
 
   if (modify.new_draft) {
     return (
-      <Div100vh className={`modify__container modify--open ${animations.overlay}`}>
+      <div className={`modify__container modify--open ${animations.overlay}`}>
         <div className="header--overlay">
           <div className='header__avatar'>
             <img alt='Avatar' src={user.avatar} />
@@ -225,7 +225,7 @@ const Modify = () => {
             </div>
           </div>
         </form>
-      </Div100vh>
+      </div>
     )
   } else if (modify.edit_draft[0]) {
     const currDraft = drafts[modify.edit_draft[1]]
