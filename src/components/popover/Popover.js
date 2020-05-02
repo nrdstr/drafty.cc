@@ -119,12 +119,16 @@ const Popover = props => {
     }
 
     useEffect(() => {
+        const body = document.querySelector('body')
         if (popover.toggle) {
+            body.style.overflow = 'hidden'
             const { type } = popover
             if (type === 'draft_delete') setConfirmText('delete this draft')
             if (type === 'log_out') setConfirmText('log out')
             if (type === 'draft_delete_all') setConfirmText('delete your drafts')
             if (type === 'account_delete') setConfirmText('delete your account')
+        } else {
+            body.style.overflow = ''
         }
     }, [popover.toggle])
 

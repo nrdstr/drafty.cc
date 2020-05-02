@@ -231,7 +231,7 @@ const Modify = () => {
     const currDraft = drafts[modify.edit_draft[1]]
     const timestamp = moment.unix(currDraft.timestamp).fromNow()
     return (
-      <div className={`modify__container modify--open ${animations.overlay}`}>
+      <Div100vh className={`modify__container modify--open ${animations.overlay}`}>
         <div className="header--overlay">
           <div className='header__avatar'>
             <img alt='Avatar' src={user.avatar} />
@@ -288,7 +288,7 @@ const Modify = () => {
             </div>
           </div>
         </form>
-      </div>
+      </Div100vh>
     )
   } else {
     return null

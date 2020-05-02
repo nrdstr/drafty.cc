@@ -1,5 +1,5 @@
 .popover {
-    position: absolute;
+    position: fixed;
     top: 0;
     @include flex(column, center, center);
     @include size(100vw, 100%);
