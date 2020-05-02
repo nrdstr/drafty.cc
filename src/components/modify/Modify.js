@@ -157,8 +157,11 @@ const Modify = () => {
     handleProgressRing(0)
     if (modify.new_draft || modify.edit_draft[0]) {
       body.style.overflow = 'hidden'
-      inputRef.current.focus()
-      inputRef.current.setSelectionRange(charCount, charCount)
+      console.log(window.innerWidth)
+      if (window.innerWidth >= 769) {
+        inputRef.current.focus()
+        inputRef.current.setSelectionRange(charCount, charCount)
+      }
       if (modify.edit_draft[0]) {
         setOriginal(drafts[modify.edit_draft[1]].text)
         setText(drafts[modify.edit_draft[1]].text)
