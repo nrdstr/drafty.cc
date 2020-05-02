@@ -152,9 +152,11 @@ const Modify = () => {
   }
 
   useEffect(() => {
+    const body = document.querySelector('body')
     setCharCount(0)
     handleProgressRing(0)
     if (modify.new_draft || modify.edit_draft[0]) {
+      body.style.overflow = 'hidden'
       inputRef.current.focus()
       inputRef.current.setSelectionRange(charCount, charCount)
       if (modify.edit_draft[0]) {
@@ -164,6 +166,8 @@ const Modify = () => {
         setCharCount(drafts[modify.edit_draft[1]].text.length)
         handleProgressRing(drafts[modify.edit_draft[1]].text.length)
       }
+    } else {
+      body.style.overflow = ''
     }
   }, [modify.edit_draft, original, drafts, modify.new_draft])
 
