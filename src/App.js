@@ -4,16 +4,14 @@ import Login from "./components/login/Login"
 import { useStateValue } from './state'
 import Popover from './components/popover/Popover'
 import Home from "./components/home/Home"
-import Div100vh from 'react-div-100vh'
 import "./App.scss"
-import Drafts from "./components/drafts/Drafts"
 
 function App() {
-  const [{ popover, modify, settings, drafts }] = useStateValue()
+  const [{ popover, modify, settings, drafts, isLoading }] = useStateValue()
   const [scroll, setScroll] = useState('')
 
   useEffect(() => {
-    if (popover.toggle || modify.new_draft || modify.edit_draft[0] || settings.toggle) {
+    if (popover.toggle || modify.new_draft || modify.edit_draft[0] || settings.toggle || isLoading) {
       setScroll('no-scroll')
     } else {
       setScroll('')

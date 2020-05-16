@@ -2,7 +2,6 @@ import React, { useEffect } from "react"
 import { useStateValue } from "../../state"
 import firebase from "../../utils/firebase"
 import Draft from './Draft'
-import Div100vh from 'react-div-100vh'
 
 const Drafts = () => {
   const [
@@ -12,8 +11,7 @@ const Drafts = () => {
       drafts,
       show_drafts,
       animations,
-      popover,
-      settings
+      popover
     },
     dispatch] = useStateValue()
 
@@ -39,8 +37,16 @@ const Drafts = () => {
               type: 'toggleLoader',
               payload: false
             })
+
+            dispatch({
+              type: 'user',
+              payload: {
+                ...user,
+                avatar: data.avatar
+              }
+            })
+
           } else {
-            console.log(user)
             const userData = {
               twitterID: user.twitterID,
               uid: user.uid

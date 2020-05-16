@@ -2,7 +2,7 @@ import React, { useEffect } from "react"
 import { useStateValue } from "../../state"
 import Header from "../header/Header"
 import Footer from "../footer/Footer"
-import { twitter, auth } from "../../utils/firebase"
+import firebase, { twitter, auth } from "../../utils/firebase"
 
 const Login = () => {
   const [{ user, animations }, dispatch] = useStateValue()
@@ -15,6 +15,7 @@ const Login = () => {
 
           let avatar = userInfo.photoURL
           avatar = avatar.replace("_normal", '')
+
           dispatch({
             type: "user",
             payload: {
@@ -22,8 +23,8 @@ const Login = () => {
               isAuthenticated: true,
               uid: auth.currentUser.uid,
               twitterID: userInfo.providerData[0].uid,
-              username: userInfo.displayName,
-              avatar: avatar
+              username: userInfo.displayName
+              // avatar: avatar
             }
           })
 
@@ -50,10 +51,9 @@ const Login = () => {
   }
 
   const loginWithTwitter = async () => {
-    auth.signInWithRedirect(twitter).then(async result => {
+    auth.signInWithPopup(twitter).then(async result => {
       const userData = result.additionalUserInfo.profile
-
-      let avatar = userData.profile_image_url
+      let avatar = userData.profile_image_url_https
       avatar = avatar.replace("_normal", '')
 
       dispatch({
@@ -67,6 +67,11 @@ const Login = () => {
           avatar: avatar
         }
       })
+
+      firebase.database()
+        .ref(`/users/${auth.currentUser.uid}/`)
+        .child('avatar')
+        .set(avatar)
 
       setTimeout(() => {
         dispatch({
@@ -89,10 +94,10 @@ const Login = () => {
 
 
   useEffect(() => {
-    dispatch({
-      type: "toggleLoader",
-      payload: true
-    })
+    // dispatch({
+    //   type: "toggleLoader",
+    //   payload: true
+    // })
 
     checkForPreviousLogin()
     // eslint-disable-next-line react-hooks/exhaustive-deps

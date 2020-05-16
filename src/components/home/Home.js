@@ -25,28 +25,3 @@ const Home = () => {
 }
 
 export default Home
-
-
-//   detectKeyDown = e => {
-//     switch( e.key ) {
-//       case ']':
-//         this.toggleAddCalories()
-//         break
-//       case '[':
-//         this.toggleSubtractCalories()
-//         break
-//       case 'Escape':
-//         this.setState({
-//           toggle_add: false,
-//           toggle_subtract: false,
-//           toggle_logout: false,
-//           toggle_change_goal: false
-//         })
-//         break
-//       case 'g':
-//         this.toggleChangeGoal()
-//         break
-//       default:
-//         break
-//     }
-//   }
