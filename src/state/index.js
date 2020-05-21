@@ -31,7 +31,7 @@ export const initialState = {
     toggle: false
   },
   toggleLogout: false,
-  isLoading: false
+  isLoading: true
 }
 
 export const StateProvider = ({ reducer, initialState, children }) => (

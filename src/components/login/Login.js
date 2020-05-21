@@ -67,6 +67,7 @@ const Login = () => {
           avatar: avatar
         }
       })
+      window.localStorage.setItem('isAuthenticated', true)
 
       firebase.database()
         .ref(`/users/${auth.currentUser.uid}/`)

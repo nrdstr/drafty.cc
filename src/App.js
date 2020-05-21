@@ -7,14 +7,27 @@ import Home from "./components/home/Home"
 import "./App.scss"
 
 function App() {
-  const [{ popover, modify, settings, drafts, isLoading }] = useStateValue()
+  const [{ popover, modify, settings, drafts, isLoading, user }, dispatch] = useStateValue()
   const [scroll, setScroll] = useState('')
 
   useEffect(() => {
+    const local = localStorage.getItem('isAuthenticated')
     if (popover.toggle || modify.new_draft || modify.edit_draft[0] || settings.toggle || isLoading) {
       setScroll('no-scroll')
     } else {
       setScroll('')
+    }
+
+    if (local && local === true) {
+      dispatch({
+        type: 'user',
+        payload: {
+          ...user,
+          isAuthenticated: true
+        }
+      })
+    } else {
+      console.log(local)
     }
   }, [popover.toggle || modify.new_draft || modify.edit_draft[0] || settings.toggle])
 

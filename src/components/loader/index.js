@@ -13,6 +13,7 @@ const Loader = () => {
   }
 
   useEffect(() => {
+    window.scrollTo(0, 0)
     if (animations.loader_out) {
       handleLoaderAnimation()
     }
