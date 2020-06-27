@@ -51,7 +51,7 @@ const Login = () => {
   }
 
   const loginWithTwitter = async () => {
-    auth.signInWithRedirect(twitter).then(async result => {
+    auth.signInWithPopup(twitter).then(async result => {
       const userData = result.additionalUserInfo.profile
       let avatar = userData.profile_image_url_https
       avatar = avatar.replace("_normal", '')
