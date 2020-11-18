@@ -58,6 +58,7 @@ body {
   &::after {
     content: '';
     background: url('/paper.jpg') repeat center;
+    background-position: fixed;
     background-size: 500px 500px;
     width: 100%;
     height:100%;
