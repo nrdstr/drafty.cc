@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import Loader from "./components/loader"
+import Footer from './components/footer/Footer'
 import Login from "./components/login/Login"
 import { useStateValue } from './state'
 import Popover from './components/popover/Popover'
@@ -34,13 +35,14 @@ function App() {
   return (
     <div className={`app ${scroll}`}>
       <main className={`app__wrapper ${scroll}`}>
+        <Login isLoading={isLoading} scroll={scroll} />
         <div style={drafts.length > 0 ? null : { height: '100%' }} className={`app__inner ${scroll}`}>
           <Loader />
-          <Login isLoading={isLoading} scroll={scroll} />
           <Home />
         </div>
         <Popover />
       </main>
+      <Footer />
     </div>
   )
 }

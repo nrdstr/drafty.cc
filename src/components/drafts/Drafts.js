@@ -138,10 +138,10 @@ const Drafts = () => {
       handleDeleteDraft={handleDeleteDraft} />
 
   if (!isLoading) {
-    if (show_drafts && user.isAuthenticated) {
+    if (user.isAuthenticated) {
       if (drafts && drafts.length) {
         return (
-          <div className={`drafts__container animate--fade-in ${popover.toggle ? 'blur no-scroll' : ''}`}>
+          <div className={`drafts__container ${show_drafts ? 'animate--fade-in' : 'hide'} ${popover.toggle ? 'blur no-scroll' : ''}`}>
             <div className={`drafts animate--fade-in`}>
               {drafts.map((draft, i) => renderDraft(draft, i))}
               <div style={{ paddingTop: 10, paddingBottom: 10 }} className='placeholder'>

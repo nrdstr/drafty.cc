@@ -121,7 +121,7 @@ const Popover = props => {
     useEffect(() => {
         const body = document.querySelector('body')
         if (popover.toggle) {
-            body.style.overflow = 'hidden'
+            // body.style.overflow = 'hidden'
             const { type } = popover
             if (type === 'draft_delete') setConfirmText('delete this draft')
             if (type === 'log_out') setConfirmText('log out')

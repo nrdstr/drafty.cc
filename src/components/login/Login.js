@@ -95,10 +95,7 @@ const Login = ({ isLoading }) => {
 
 
   useEffect(() => {
-    // dispatch({
-    //   type: "toggleLoader",
-    //   payload: true
-    // })
+    document.querySelector('body').style.overflowY = 'auto'
 
     checkForPreviousLogin()
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -125,7 +122,7 @@ const Login = ({ isLoading }) => {
             </button>
           </div>
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     )
   } else {

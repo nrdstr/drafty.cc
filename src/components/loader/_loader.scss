@@ -19,6 +19,7 @@
     background-color: transparent;
     color: white;
     overflow: hidden;
+    z-index: 100;
   }
 
   &__logo {
@@ -37,7 +38,7 @@
       left: 0;
       background: url('/logo/logo-solid.svg') no-repeat center;
       background-size: contain;
-      opacity: .6;
+      opacity: .4;
       transform-origin: center;
       transform: scale(1);
       animation: loading 1s cubic-bezier(.16,.47,.99,.37) infinite;

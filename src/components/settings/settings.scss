@@ -2,9 +2,8 @@
     @include flex(column, center, center);
     @include size(100%, 100%);
     min-width: 300px;
+    max-width: 1400px;
     position: fixed;
-    top: 0;
-    left: 0;
     background-color: $dark-blue;
     transition: $transition--standard;
     z-index: 2001;
