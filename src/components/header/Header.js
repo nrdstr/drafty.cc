@@ -7,7 +7,7 @@ const Header = () => {
 
   if (user.isAuthenticated) {
     return (
-      <header className={`header ${popover.toggle ? 'blur' : ''}`}>
+      <header className={`header animate--fade-in ${popover.toggle ? 'blur' : ''}`}>
         <div className='header__user'>
           <div className='header__avatar'>
             <img alt='Avatar' src={user.avatar} />
