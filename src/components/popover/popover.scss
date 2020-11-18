@@ -15,14 +15,17 @@
         @include size(200px, 200px);
     }
 
+    &__row {
+        display: flex;
+    }
+
     &__btn {
         background-color: $red;
         padding: 20px;
         min-width: 90px;
         min-height: 60px;
-        font-size: 0.9rem;
+        font-size: $font-size;
         margin: 5px;
-        border-radius: 30px;
         transition: $transition--standard;
 
         &:focus,

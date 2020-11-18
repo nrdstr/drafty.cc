@@ -16,6 +16,10 @@
         background: transparent;
         transition: all .2s ease-in-out;
 
+        &:last-child {
+          margin-right: 0;
+        }
+
         @media (max-width: 768px) {
           margin-right:  0;
         }
@@ -39,7 +43,7 @@
 
         img {
             transform: rotate(45deg);
-            @include size(17px, 17px);
+            @include size(25px, 25px);
         }
 
         &--logout {

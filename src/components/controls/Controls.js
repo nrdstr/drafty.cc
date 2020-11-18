@@ -13,7 +13,8 @@ const Controls = () => {
                 overlay: 'animate--fade-in'
             }
         })
-        dispatch({ type: 'modify', payload: { ...modify, [operator]: true } })
+        dispatch({ type: 'modify', payload: { ...modify, [operator]: true, edit_draft: [false, null] } })
+        dispatch({ type: 'settings', payload: { ...Settings, toggle: false } })
         dispatch({ type: 'show_drafts', payload: false })
     }
 
@@ -26,6 +27,8 @@ const Controls = () => {
             }
         })
         dispatch({ type: 'settings', payload: { ...Settings, toggle: true } })
+
+        dispatch({ type: 'modify', payload: { ...modify, new_draft: false, edit_draft: [false, null] } })
         dispatch({ type: 'show_drafts', payload: false })
     }
 

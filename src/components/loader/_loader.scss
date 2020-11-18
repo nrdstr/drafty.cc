@@ -16,18 +16,66 @@
     height: 100%;
     opacity: 1;
     z-index: 9999;
-    background-color: $dark-blue;
+    background-color: transparent;
     color: white;
     overflow: hidden;
   }
 
   &__logo {
     position: relative;
-    @include size(75px, 75px);
+    @include size(80px, 80px);
     background: url('/logo/logo-solid.svg') no-repeat center;
     background-size: contain;
-    animation: speeder .4s linear infinite;
-    z-index: 1000;
+    opacity: 1;
+    animation: bump 1s cubic-bezier(.16,.47,.99,.37) infinite;
+    z-index: 1;
+
+    &::after {
+      content: '';
+      position: absolute;
+      @include size(80px, 80px);
+      left: 0;
+      background: url('/logo/logo-solid.svg') no-repeat center;
+      background-size: contain;
+      opacity: .6;
+      transform-origin: center;
+      transform: scale(1);
+      animation: loading 1s cubic-bezier(.16,.47,.99,.37) infinite;
+      z-index: -1;
+    }
+  }
+
+  @keyframes bump {
+    from {
+      transform: scale(1);
+      opacity: .8;
+    }
+
+    50% {
+      transform: scale(1.2);
+      opacity: 1;
+    }
+
+    to {
+      transform: scale(1);
+      opacity: 0.8;
+    }
+  }
+
+  @keyframes loading {
+    from {
+      transform: scale(1);
+      opacity: .6;
+    }
+
+    50% {
+      transform: scale(1);
+    }
+
+    to {
+      transform: scale(2);
+      opacity: 0;
+    }
   }
 
   &__overlay {

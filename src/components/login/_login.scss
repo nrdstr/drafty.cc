@@ -65,4 +65,33 @@
       transform: scale(1.05);
     }
   }
+
+  &__hero {
+    @include flex(column, center, center);
+
+    p {
+      font-family: $font--main;
+      color: $white;
+      font-size: $font-size;
+      line-height: $font-size;
+      max-width: 420px;
+      text-align: left;
+    }
+  }
+
+  &__logo {
+    @include size(150px, 150px);
+    background: url('/logo/logo-solid.svg') no-repeat center;
+    background-size: contain;
+
+    @media (max-width: 768px) {
+        @include size(140px, 140px);
+      }
+  }
+
+  &__logo-text {
+    font-size: clamp(3rem, 7vw, 8rem) !important;
+    line-height: clamp(3rem, 7vw, 5rem) !important;
+    color: $white !important;
+  }
 }

@@ -27,7 +27,7 @@ function App() {
         }
       })
     } else {
-      console.log(local)
+      // console.log(local)
     }
   }, [popover.toggle || modify.new_draft || modify.edit_draft[0] || settings.toggle])
 
@@ -36,7 +36,7 @@ function App() {
       <main className={`app__wrapper ${scroll}`}>
         <div style={drafts.length > 0 ? null : { height: '100%' }} className={`app__inner ${scroll}`}>
           <Loader />
-          <Login scroll={scroll} />
+          <Login isLoading={isLoading} scroll={scroll} />
           <Home />
         </div>
         <Popover />

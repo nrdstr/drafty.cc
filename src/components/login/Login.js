@@ -4,7 +4,7 @@ import Header from "../header/Header"
 import Footer from "../footer/Footer"
 import firebase, { twitter, auth } from "../../utils/firebase"
 
-const Login = () => {
+const Login = ({ isLoading }) => {
   const [{ user, animations }, dispatch] = useStateValue()
 
   const checkForPreviousLogin = () => {
@@ -43,7 +43,7 @@ const Login = () => {
               payload: false
             })
           }, 200)
-        }, 1000)
+        }, 1500)
       } catch (e) {
         console.error("Error fetching previous auth: ", e)
       }
@@ -104,17 +104,22 @@ const Login = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  if (!user.isAuthenticated) {
+  if (!user.isAuthenticated && !isLoading) {
     return (
       <div className="login__container">
-        <Header />
+        {/* <Header /> */}
         <div className="login__links">
-          <img alt='Home page art' src='/writer-beard.svg' />
+          {/* <img alt='Home page art' src='/writer-beard.svg' /> */}
+          <div className='login__hero'>
+            <div className='login__logo' />
+            <h1 className='text text--bold text--narrow login__logo-text' style={{ margin: "0 0 3px 0" }}>Drafty</h1>
+            <p>A place for people to write, format, and save notes, jokes, ideas, and <strong>anything</strong> in between.</p>
+          </div>
 
-          <div style={{ marginTop: 30 }} className='placeholder'>
+          <div className='placeholder'>
             <button onClick={loginWithTwitter} className='placeholder__button placeholder__button--landing'>
               <span className='btn__inner'>
-                <span className='icon btn-text-one text text--medium'>Log in with Twitter</span>
+                <span className='icon btn-text-one'>Log in with <strong>Twitter</strong></span>
                 <span className='btn-text--twitter' />
               </span>
             </button>

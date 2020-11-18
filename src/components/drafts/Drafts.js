@@ -10,6 +10,7 @@ const Drafts = () => {
       modify,
       drafts,
       show_drafts,
+      isLoading,
       animations,
       popover
     },
@@ -33,10 +34,6 @@ const Drafts = () => {
                 payload: data.drafts
               })
             }
-            dispatch({
-              type: 'toggleLoader',
-              payload: false
-            })
 
             dispatch({
               type: 'user',
@@ -44,6 +41,11 @@ const Drafts = () => {
                 ...user,
                 avatar: data.avatar
               }
+            })
+
+            dispatch({
+              type: 'toggleLoader',
+              payload: false
             })
 
           } else {
@@ -134,47 +136,51 @@ const Drafts = () => {
       handleEditDraft={handleEditDraft}
       handleDeleteDraft={handleDeleteDraft} />
 
-  if (show_drafts && user.isAuthenticated) {
-    if (drafts && drafts.length) {
-      return (
-        <div className={`drafts__container animate--fade-in ${popover.toggle ? 'blur no-scroll' : ''}`}>
-          <div className={`drafts animate--fade-in`}>
-            {drafts.map((draft, i) => renderDraft(draft, i))}
-            <div style={{ paddingTop: 10, paddingBottom: 10 }} className='placeholder'>
-              <button style={{ marginTop: 20, marginBottom: 20 }} onClick={toggleModify} className='placeholder__button button__draft'>
+  if (!isLoading) {
+    if (show_drafts && user.isAuthenticated) {
+      if (drafts && drafts.length) {
+        return (
+          <div className={`drafts__container animate--fade-in ${popover.toggle ? 'blur no-scroll' : ''}`}>
+            <div className={`drafts animate--fade-in`}>
+              {drafts.map((draft, i) => renderDraft(draft, i))}
+              <div style={{ paddingTop: 10, paddingBottom: 10 }} className='placeholder'>
+                <button style={{ marginTop: 20, marginBottom: 20 }} onClick={toggleModify} className='placeholder__button button__draft'>
+                  <span className='btn__inner'>
+                    <span className='icon fas btn-text-one text--slim'>Add new draft</span>
+                    <span className='icon fas btn-text-two' />
+                  </span>
+                </button>
+                <div className='placeholder__logo' />
+              </div>
+
+            </div>
+            <button className='drafts__add-mobile' onClick={toggleModify}>
+              <img src='/icons/close.svg' alt='Create new draft' />
+            </button>
+          </div>
+        )
+      } else {
+        return (
+          <div className='drafts__container drafts__container--placeholder animate--fade-in'>
+            <div className='drafts placeholder'>
+              <div className='placeholder__art' />
+
+              <button onClick={toggleModify} className='placeholder__button'>
                 <span className='btn__inner'>
-                  <span className='icon fas btn-text-one text--slim'>Add new draft</span>
+                  <span className='icon fas btn-text-one text--slim'>Create a draft</span>
                   <span className='icon fas btn-text-two' />
                 </span>
               </button>
-              <div className='placeholder__logo' />
+
             </div>
-
-          </div>
-          <button className='drafts__add-mobile' onClick={toggleModify}>
-            <img src='/icons/close.svg' alt='Create new draft' />
-          </button>
-        </div>
-      )
-    } else {
-      return (
-        <div className='drafts__container drafts__container--placeholder animate--fade-in'>
-          <div className='drafts placeholder'>
-            <div className='placeholder__art' />
-
-            <button onClick={toggleModify} className='placeholder__button'>
-              <span className='btn__inner'>
-                <span className='icon fas btn-text-one text--slim'>Create a draft</span>
-                <span className='icon fas btn-text-two' />
-              </span>
+            <button style={popover.toggle ? { opacity: 0, borderRadius: 0 } : null} className='drafts__add-mobile' onClick={toggleModify}>
+              <img src='/add.svg' alt='Create new draft' />
             </button>
-
           </div>
-          <button style={popover.toggle ? { opacity: 0 } : null} className='drafts__add-mobile' onClick={toggleModify}>
-            <img src='/add.svg' alt='Create new draft' />
-          </button>
-        </div>
-      )
+        )
+      }
+    } else {
+      return null
     }
   } else {
     return null

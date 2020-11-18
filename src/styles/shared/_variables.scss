@@ -10,6 +10,9 @@ $blue--light: #8b97a3;
 $blue--vibrant: #3770FE;
 
 $red: #e93359;
+$white: #f7fbff;
+
+$font-size: clamp(1.1rem, 5vw, 1.3rem);
 
 // Font
 
@@ -18,7 +21,7 @@ $font--main: 'Lato';
 $transition--standard: all .2s ease;
 
 $btn-width: 150px;
-$btn-width--landing: 175px;
+$btn-width--landing: 100%;
 $border-radius: 40px;
 $border-radius--hover: 3px;
 $blur: 50px;

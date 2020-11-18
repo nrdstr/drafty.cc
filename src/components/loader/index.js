@@ -21,21 +21,21 @@ const Loader = () => {
   if (isLoading) {
     return (
       <Div100vh ref={container} className="loader__container">
-        <div className={`loader__body ${endLoad ? 'animate--fade-out' : ''}`}>
+        {/* <div className={`loader__body ${endLoad ? 'animate--fade-out' : ''}`}>
           <span>
             <span></span>
             <span></span>
             <span></span>
             <span></span>
           </span>
-          <div className={`loader__logo ${endLoad ? 'animate--fade-out' : ''}`} />
-        </div>
-        <div className={`longfazers ${endLoad ? 'animate--fade-out' : ''}`}>
+        </div> */}
+        <div className={`loader__logo ${endLoad ? 'animate--fade-out' : ''}`} />
+        {/* <div className={`longfazers ${endLoad ? 'animate--fade-out' : ''}`}>
           <span></span>
           <span></span>
           <span></span>
           <span></span>
-        </div>
+        </div> */}
       </Div100vh>
     )
   } else {

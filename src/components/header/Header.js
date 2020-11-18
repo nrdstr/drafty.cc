@@ -20,6 +20,7 @@ const Header = () => {
   } else {
     return (
       <header className="header header--login">
+        <div className='header__background' />
         <div className='header__logo header__logo--login' />
         <h1 className='text text--large text--bold text--narrow' style={{ margin: "0 0 3px 0" }}>drafty</h1>
       </header>

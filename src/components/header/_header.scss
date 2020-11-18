@@ -7,9 +7,9 @@
     font-size: 1.5rem;
     background-color: $dark-blue;
     width: 100%;
-    max-width: 1200px;
+    // max-width: 1200px;
     box-sizing: border-box;
-    padding: 15px 20px 10px 20px;
+    padding: 20px;
     transition: filter 0.2s ease-in-out;
     z-index: 2000;
 
@@ -27,7 +27,7 @@
     a {
         @include flex(row, center, center);
         font-size: 2rem;
-        color: white;
+        color: $white;
         cursor: pointer;
     }
 
@@ -37,8 +37,8 @@
 
     &__logo {
         position: absolute;
-        left: calc(50% - 25px);
-        @include size(50px, 50px);
+        left: calc(50% - 30px);
+        @include size(60px, 60px);
         background: url('/logo/logo-solid.svg') no-repeat center;
         background-size: contain;
 
@@ -55,7 +55,7 @@
     &__username {
         font-family: $font--main;
         font-size: 1rem;
-        color: white;
+        color: $white;
         margin: 0;
         margin-left: 20px;
     }
@@ -81,14 +81,14 @@
     left: 0;
     width: 100%;
     box-sizing: border-box;
-    padding: 15px 20px;
+    padding: 20px;
 
     @media (max-width: 768px) {
         padding: 20px 10px;
     }
 
     button {
-        color: white;
+        color: $white;
         cursor: pointer;
         background: none;
         outline: 0;
