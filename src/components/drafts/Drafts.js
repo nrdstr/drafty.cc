@@ -126,11 +126,12 @@ const Drafts = () => {
   useEffect(() => {
     getExistingUserData()
     document.addEventListener('keypress', e => detectKeyDown(e))
+    document.querySelector('body').style.background = '#171f2a'
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const renderDraft = (draft, i) =>
-    <Draft key={draft.text.slice(0, 10)}
+    <Draft key={i}
       draft={draft}
       index={i}
       handleEditDraft={handleEditDraft}
