@@ -106,7 +106,7 @@ const Login = ({ isLoading }) => {
 
   if (!user.isAuthenticated && !isLoading) {
     return (
-      <div className="login__container">
+      <div className="login__container animate--fade-in">
         {/* <Header /> */}
         <div className="login__links">
           {/* <img alt='Home page art' src='/writer-beard.svg' /> */}
