@@ -19,7 +19,7 @@
         max-width: 600px;
         padding: 0 15px;
 
-        @media (max-width: 768px) {
+        @media (max-width: 811px) {
             padding: 0 10px;
             max-width: 100%;
         }
@@ -30,7 +30,7 @@
             border-bottom: 1px solid $blue;
             padding: 20px 0;
 
-            @media (max-width: 768px) {
+            @media (max-width: 811px) {
                 padding: 10px 0;
             }
 

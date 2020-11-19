@@ -10,7 +10,7 @@
   border-left: 1px solid lighten($dark-blue, 10%);
   // min-height: 100%;
 
-  @media (max-width: 768px) {
+  @media (max-width: 811px) {
     min-width: 100%;
   }
 
@@ -27,7 +27,7 @@
     border-radius: 50%;
     transition: $transition--standard;
 
-    @media (max-width: 768px) {
+    @media (max-width: 811px) {
       display: flex;
     }
 
@@ -45,7 +45,7 @@
     background-color: $dark-blue;
     transition: filter 0.2s ease-in-out;
 
-    @media (max-width: 768px) {
+    @media (max-width: 811px) {
       width: 100%;
       margin-top: 90px;
       border: 0;
@@ -60,7 +60,7 @@
     margin: 0;
     padding: 0;
 
-    @media (max-width: 768px) {
+    @media (max-width: 811px) {
       margin-left: 20px;
     }
 
@@ -127,7 +127,7 @@
     margin: 0;
     font-family: $font--main;
     color: white;
-    font-size: clamp(1rem, 5vw, 1.3rem);
+    font-size: clamp(1rem, 4vw, 1.3rem);
     // padding: 10px 0;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -147,7 +147,7 @@
     flex-basis: 0px;
     background-color: transparent;
     // font-size: 1rem;
-    font-size: clamp(1.1rem, 5vw, 1.3rem);
+    // font-size: clamp(1.1rem, 5vw, 1.3rem);
     opacity: 0;
     transform: scale(1);
     transform-origin: center;
@@ -155,7 +155,7 @@
     transition: all .2s ease-in-out;
     z-index: 9999;
 
-    @media (max-width: 768px) {
+    @media (max-width: 811px) {
       opacity: 1;
     }
 
@@ -164,10 +164,10 @@
     }
 
     img {
-      @include size(20px, 20px);
+      @include size(17px, 17px);
 
-      @media (max-width: 415px) {
-        @include size(15px, 15px);
+      @media (min-width: 812px) {
+        @include size(20px, 20px);
       }
     }
   }

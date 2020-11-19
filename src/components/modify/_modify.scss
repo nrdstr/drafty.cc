@@ -50,12 +50,12 @@
       outline: 0;
       transition: $transition--standard;
 
-      @media (max-width: 768px) {
+      @media (max-width: 811px) {
         padding: 25px 45px 10px 66px;
         // font-size: 1.4rem;
       }
 
-      @media (max-width: 415px) {
+      @media (max-width: 575.98px) {
         // font-size: 1.1rem;
       }
 
@@ -169,7 +169,7 @@
         cursor: not-allowed;
       }
 
-      @media (max-width: 768px) {
+      @media (max-width: 811px) {
         margin-top: 50px;
         width: 90%;
       }

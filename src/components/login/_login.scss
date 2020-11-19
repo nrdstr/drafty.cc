@@ -56,12 +56,12 @@
     img {
       @include size(100%, 400px);
 
-      @media (max-width: 768px) {
+      @media (max-width: 811px) {
         height: 200px;
       }
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 811px) {
       flex-direction: column;
     }
 
@@ -110,7 +110,7 @@
     background: url('/logo/logo-solid.svg') no-repeat center;
     background-size: contain;
 
-    @media (max-width: 768px) {
+    @media (max-width: 811px) {
         @include size(140px, 140px);
       }
   }

@@ -156,9 +156,10 @@ const Modify = () => {
     setCharCount(0)
     handleProgressRing(0)
     if (modify.new_draft || modify.edit_draft[0]) {
-      // body.style.overflow = 'hidden'
+      body.style.overflow = 'hidden'
       console.log(window.innerWidth)
       if (window.innerWidth >= 769) {
+        body.style.overflow = ''
         inputRef.current.focus()
         inputRef.current.setSelectionRange(charCount, charCount)
       }
@@ -176,7 +177,7 @@ const Modify = () => {
 
   if (modify.new_draft) {
     return (
-      <div className={`modify__container modify--open ${animations.overlay}`}>
+      <Div100vh className={`modify__container modify--open ${animations.overlay}`}>
         <div className="header--overlay">
           <div className='header__avatar'>
             <img alt='Avatar' src={user.avatar} />
@@ -232,7 +233,7 @@ const Modify = () => {
             </div>
           </div>
         </form>
-      </div>
+      </Div100vh>
     )
   } else if (modify.edit_draft[0]) {
     const currDraft = drafts[modify.edit_draft[1]]

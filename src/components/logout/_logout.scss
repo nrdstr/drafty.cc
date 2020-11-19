@@ -28,7 +28,7 @@
     font-size: 1.3rem;
     transition: all 0.4s ease;
 
-    @media (max-width: 768px) {
+    @media (max-width: 811px) {
       width: 95%;
     }
 
@@ -48,7 +48,7 @@
     box-sizing: border-box;
     padding: 15px 20px;
 
-    @media (max-width: 768px) {
+    @media (max-width: 811px) {
       padding: 20px 10px;
     }
 
@@ -76,7 +76,7 @@
     img {
       @include size(30px, 30px);
 
-      @media (max-width: 415px) {
+      @media (max-width: 575.98px) {
         @include size(22px, 22px);
       }
     }

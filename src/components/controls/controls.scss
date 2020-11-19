@@ -20,12 +20,12 @@
           margin-right: 0;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 811px) {
           margin-right:  0;
         }
 
         &--add {
-          @media (max-width: 768px) {
+          @media (max-width: 811px) {
             display: none;
           }
         }
@@ -65,7 +65,7 @@
               border-radius: 50%;
               border: 2px solid white;
 
-              @media (max-width: 768px) {
+              @media (max-width: 811px) {
                 border: none;
               }
             }

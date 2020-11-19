@@ -13,7 +13,7 @@
     transition: filter 0.2s ease-in-out;
     z-index: 2000;
 
-    @media (max-width: 768px) {
+    @media (max-width: 811px) {
         padding: 20px 10px;
     }
 
@@ -42,7 +42,7 @@
         background: url('/logo/logo-solid.svg') no-repeat center;
         background-size: contain;
 
-        @media (max-width: 768px) {
+        @media (max-width: 811px) {
             left: calc(50% - 20px);
             @include size(40px, 40px);
           }
@@ -65,7 +65,7 @@
         border-radius: 50%;
         overflow: hidden;
 
-        @media (max-width: 768px) {
+        @media (max-width: 811px) {
           @include size(50px, 50px);
         }
 
@@ -83,7 +83,7 @@
     box-sizing: border-box;
     padding: 20px;
 
-    @media (max-width: 768px) {
+    @media (max-width: 811px) {
         padding: 20px 10px;
     }
 
