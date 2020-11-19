@@ -43,10 +43,6 @@
       mix-blend-mode: screen;
     }
 
-    @media (max-width: 768px) {
-      height: calc(100% - 82px);
-    }
-
     a {
       cursor: pointer;
     }
@@ -120,7 +116,7 @@
   }
 
   &__logo-text {
-    font-size: clamp(3rem, 7vw, 8rem) !important;
+    font-size: clamp(4rem, 7vw, 8rem) !important;
     line-height: clamp(3rem, 7vw, 5rem) !important;
     color: $white !important;
   }

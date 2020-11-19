@@ -1,7 +1,6 @@
 import React, { useEffect } from "react"
 import { useStateValue } from "../../state"
-import Header from "../header/Header"
-import Footer from "../footer/Footer"
+import Div100vh from 'react-div-100vh'
 import firebase, { twitter, auth } from "../../utils/firebase"
 
 const Login = ({ isLoading }) => {
@@ -103,7 +102,7 @@ const Login = ({ isLoading }) => {
 
   if (!user.isAuthenticated && !isLoading) {
     return (
-      <div className="login__container animate--fade-in">
+      <Div100vh className="login__container animate--fade-in">
         {/* <Header /> */}
         <div className="login__links">
           {/* <img alt='Home page art' src='/writer-beard.svg' /> */}
@@ -123,7 +122,7 @@ const Login = ({ isLoading }) => {
           </div>
         </div>
         {/* <Footer /> */}
-      </div>
+      </Div100vh>
     )
   } else {
     return null

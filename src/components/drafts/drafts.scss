@@ -94,7 +94,7 @@
   text-overflow: ellipsis;
   overflow: hidden;
 
-  @media (max-width: 768px) {
+  @media (max-width: 811px) {
     padding: 15px 10px;
     padding-right: 60px;
   }
@@ -127,7 +127,7 @@
     margin: 0;
     font-family: $font--main;
     color: white;
-    font-size: clamp(1.1rem, 5vw, 1.3rem);
+    font-size: clamp(1rem, 5vw, 1.3rem);
     // padding: 10px 0;
     text-overflow: ellipsis;
     overflow: hidden;

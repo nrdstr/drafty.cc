@@ -23,6 +23,7 @@
   }
 
   &__powered-by {
+    @include flex(row, center, center);
     text-align: right;
     border-left: 1px solid $white;
 
